@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI for Kids - Learn AI the Fun Way!</title>
+    <meta name="description" content="Learn AI in a fun, simple way designed for kids! Interactive lessons, games, and activities to understand AI.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" aria-label="AI for Kids Home">
+                <span class="logo-icon" aria-hidden="true">🤖</span>
+                <span class="logo-text">AI for Kids</span>
+            </a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                <span class="hamburger" aria-hidden="true"></span>
+            </button>
+            <ul id="nav-menu" class="nav-menu" role="menubar">
+                <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="#lessons" class="nav-link" role="menuitem">Lessons</a></li>
+                <li role="none"><a href="#games" class="nav-link" role="menuitem">Games</a></li>
+                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero" role="banner">
+        <div class="hero-bg" aria-hidden="true">
+            <div class="floating-shapes" aria-hidden="true">
+                <div class="shape shape-1" aria-hidden="true">🤖</div>
+                <div class="shape shape-2" aria-hidden="true">🧠</div>
+                <div class="shape shape-3" aria-hidden="true">🎮</div>
+                <div class="shape shape-4" aria-hidden="true">🎨</div>
+                <div class="shape shape-5" aria-hidden="true">🎵</div>
+                <div class="shape shape-6" aria-hidden="true">🤖</div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Learn AI the <span class="highlight">Fun Way</span>!</h1>
+                <p class="hero-subtitle">Discover how computers think, learn, and create - just like you!</p>
+                <div class="hero-buttons">
+                    <a href="#lessons" class="btn btn-primary" role="button">Start Learning 🚀</a>
+                    <a href="#games" class="btn btn-secondary" role="button">Play Games 🎮</a>
+                </div>
+                <div class="hero-stats" role="list" aria-label="Learning stats">
+                    <div class="stat" role="listitem">
+                        <span class="stat-number" aria-label="10 lessons">10+</span>
+                        <span class="stat-label">Fun Lessons</span>
+                    </div>
+                    <div class="stat" role="listitem">
+                        <span class="stat-number" aria-label="20 games">20+</span>
+                        <span class="stat-label">Fun Games</span>
+                    </div>
+                    <div class="stat" role="listitem">
+                        <span class="stat-number" aria-label="1000 kids">1000+</span>
+                        <span class="stat-label">Happy Learners</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-illustration" aria-hidden="true">
+                <div class="robot-illustration" aria-hidden="true">
+                    <div class="robot-head">
+                        <div class="robot-eye left"></div>
+                        <div class="robot-eye right"></div>
+                        <div class="robot-antenna"></div>
+                    </div>
+                    <div class="robot-body">
+                        <div class="robot-screen">
+                            <span class="screen-text">AI</span>
+                        </div>
+                        <div class="robot-arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                    </div>
+                    <div class="robot-legs">
+                        <div class="leg left"></div>
+                        <div class="leg right"></div>
+                    </div>
+                </div>
+                <div class="floating-elements" aria-hidden="true">
+                    <span class="float-item">🌟</span>
+                    <span class="float-item">✨</span>
+                    <span class="float-item">🌈</span>
+                    <span class="float-item">⭐</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <span class="scroll-text">Scroll Down</span>
+            <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Lessons Section -->
+    <section id="lessons" class="lessons" aria-labelledby="lessons-heading">
+        <div class="container">
+            <header class="section-header">
+                <h2 id="lessons-heading" class="section-title">Fun AI Lessons</h2>
+                <p class="section-subtitle">Learn step by step with our friendly robot friends!</p>
+            </header>
+            
+            <div class="lessons-grid" role="list" aria-label="AI Lessons">
+                <article class="lesson-card" role="listitem">
+                    <div class="lesson-icon" aria-hidden="true">🧠</div>
+                    <div class="lesson-content">
+                        <h3 class="lesson-title">What is AI?</h3>
+                        <p class="lesson-desc">Meet Robby the Robot and learn what Artificial Intelligence really means!</p>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration" aria-label="Duration: 10 minutes">⏱️ 10 min</span>
+                            <span class="lesson-level beginner" aria-label="Level: Beginner">🌱 Beginner</span>
+                        </div>
+                        <button class="btn btn-lesson" aria-label="Start lesson: What is AI?">Start Lesson</button>
+                    </div>
+                </article>
+
+                <article class="lesson-card" role="listitem">
+                    <div class="lesson-icon" aria-hidden="true">🎨</div>
+                    <div class="lesson-content">
+                        <h3 class="lesson-title">AI Makes Art!</h3>
+                        <p class="lesson-desc">Discover how AI can paint, draw, and create music just like you!</p>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration" aria-label="Duration: 15 minutes">⏱️ 15 min</span>
+                            <span class="lesson-level beginner" aria-label="Level: Beginner">🌱 Beginner</span>
+                        </div>
+                        <button class="btn btn-lesson" aria-label="Start lesson: AI Makes Art">Start Lesson</button>
+                    </div>
+                </article>
+
+                <article class="lesson-card" role="listitem">
+                    <div class="lesson-icon" aria-hidden="true">🗣️</div>
+                    <div class="lesson-content">
+                        <h3 class="lesson-title">Talking to Computers</h3>
+                        <p class="lesson-desc">Learn how computers understand and talk back to us!</p>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration" aria-label="Duration: 12 minutes">⏱️ 12 min</span>
+                            <span class="lesson-level beginner" aria-label="Level: Beginner">🌱 Beginner</span>
+                        </div>
+                        <button class="btn btn-lesson" aria-label="Start lesson: Talking to Computers">Start Lesson</button>
+                    </div>
+                </article>
+
+                <article class="lesson-card" role="listitem">
+                    <div class="lesson-icon" aria-hidden="true">🎮</div>
+                    <div class="lesson-content">
+                        <h3 class="lesson-title">AI Plays Games</h3>
+                        <p class="lesson-desc">See how AI learns to play games and beat human champions!</p>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration" aria-label="Duration: 15 minutes">⏱️ 15 min</span>
+                            <span class="lesson-level intermediate" aria-label="Level: Intermediate">🌿 Intermediate</span>
+                        </div>
+                        <button class="btn btn-lesson" aria-label="Start lesson: AI Plays Games">Start Lesson</button>
+                    </div>
+                </article>
+
+                <article class="lesson-card" role="listitem">
+                    <div class="lesson-icon" aria-hidden="true">🐱</div>
+                    <div class="lesson-content">
+                        <h3 class="lesson-title">Teaching Computers to See</h3>
+                        <p class="lesson-desc">How does a computer know a cat from a dog? Let's find out!</p>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration" aria-label="Duration: 15 minutes">⏱️ 15 min</span>
+                            <span class="lesson-level intermediate" aria-label="Level: Intermediate">🌿 Intermediate</span>
+                        </div>
+                        <button class="btn btn-lesson" aria-label="Start lesson: Teaching Computers to See">Start Lesson</button>
+                    </div>
+                </article>
+
+                <article class="lesson-card" role="listitem">
+                    <div class="lesson-icon" aria-hidden="true">🤖</div>
+                    <div class="lesson-content">
+                        <h3 class="lesson-title">Build Your Own Robot Friend</h3>
+                        <p class="lesson-desc">Step-by-step guide to making your very own AI assistant!</p>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration" aria-label="Duration: 20 minutes">⏱️ 20 min</span>
+                            <span class="lesson-level advanced" aria-label="Level: Advanced">🌳 Advanced</span>
+                        </div>
+                        <button class="btn btn-lesson" aria-label="Start lesson: Build Your Own Robot Friend">Start Lesson</button>
+                    </div>
+                </article>
+
+                <article class="lesson-card" role="listitem">
+                    <div class="lesson-icon" aria-hidden="true">🌍</div>
+                    <div class="lesson-content">
+                        <h3 class="lesson-title">AI Helps the World</h3>
+                        <p class="lesson-desc">Discover how AI helps doctors, farmers, and saves animals!</p>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration" aria-label="Duration: 12 minutes">⏱️ 12 min</span>
+                            <span class="lesson-level beginner" aria-label="Level: Beginner">🌱 Beginner</span>
+                        </div>
+                        <button class="btn btn-lesson" aria-label="Start lesson: AI Helps the World">Start Lesson</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="games" aria-labelledby="games-heading">
+        <div class="container">
+            <header class="section-header">
+                <h2 id="games-heading" class="section-title">Play & Learn Games</h2>
+                <p class="section-subtitle">Fun interactive games to practice what you learned!</p>
+            </header>
+            
+            <div class="games-grid" role="list" aria-label="AI Games">
+                <article class="game-card" role="listitem">
+                    <div class="game-preview" aria-hidden="true">
+                        <div class="game-preview-bg">
+                            <span class="game-icon">🎯</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">AI Detective</h3>
+                        <p class="game-desc">Can you spot which picture was made by AI and which by a human?</p>
+                        <div class="game-meta">
+                            <span class="game-difficulty easy" aria-label="Difficulty: Easy">🟢 Easy</span>
+                            <span class="game-time" aria-label="Time: 5 min">⏱️ 5 min</span>
+                        </div>
+                        <button class="btn btn-game" aria-label="Play AI Detective">Play Now</button>
+                    </div>
+                </article>
+
+                <article class="game-card" role="listitem">
+                    <div class="game-preview" aria-hidden="true">
+                        <div class="game-preview-bg">
+                            <span class="game-icon">🎨</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Draw with AI</h3>
+                        <p class="game-desc">Draw a doodle and watch AI guess what it is!</p>
+                        <div class="game-meta">
+                            <span class="game-difficulty easy" aria-label="Difficulty: Easy">🟢 Easy</span>
+                            <span class="game-time" aria-label="Time: 5 min">⏱️ 5 min</span>
+                        </div>
+                        <button class="btn btn-game" aria-label="Play Draw with AI">Play Now</button>
+                    </div>
+                </article>
+
+                <article class="game-card" role="listitem">
+                    <div class="game-preview" aria-hidden="true">
+                        <div class="game-preview-bg">
+                            <span class="game-icon">🤖</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Train Your Robot</h3>
+                        <p class="game-desc">Teach a robot to recognize shapes by showing it examples!</p>
+                        <div class="game-meta">
+                            <span class="game-difficulty medium" aria-label="Difficulty: Medium">🟡 Medium</span>
+                            <span class="game-time" aria-label="Time: 10 min">⏱️ 10 min</span>
+                        </div>
+                        <button class="btn btn-game" aria-label="Play Train Your Robot">Play Now</button>
+                    </div>
+                </article>
+
+                <article class="game-card" role="listitem">
+                    <div class="game-preview" aria-hidden="true">
+                        <div class="game-preview-bg">
+                            <span class="game-icon">🎵</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">AI Music Maker</h3>
+                        <p class="game-desc">Create your own song with help from an AI composer!</p>
+                        <div class="game-meta">
+                            <span class="game-difficulty easy" aria-label="Difficulty: Easy">🟢 Easy</span>
+                            <span class="game-time" aria-label="Time: 10 min">⏱️ 10 min</span>
+                        </div>
+                        <button class="btn btn-game" aria-label="Play AI Music Maker">Play Now</button>
+                    </div>
+                </article>
+
+                <article class="game-card" role="listitem">
+                    <div class="game-preview" aria-hidden="true">
+                        <div class="game-preview-bg">
+                            <span class="game-icon">🗣️</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Chat with Robo</h3>
+                        <p class="game-desc">Have a conversation with our friendly AI robot friend!</p>
+                        <div class="game-meta">
+                            <span class="game-difficulty easy" aria-label="Difficulty: Easy">🟢 Easy</span>
+                            <span class="game-time" aria-label="Time: 5 min">⏱️ 5 min</span>
+                        </div>
+                        <button class="btn btn-game" aria-label="Play Chat with Robo">Play Now</button>
+                    </div>
+                </article>
+
+                <article class="game-card" role="listitem">
+                    <div class="game-preview" aria-hidden="true">
+                        <div class="game-preview-bg">
+                            <span class="game-icon">🧩</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Pattern Detective</h3>
+                        <p class="game-desc">Help AI find patterns in numbers, shapes, and colors!</p>
+                        <div class="game-meta">
+                            <span class="game-difficulty medium" aria-label="Difficulty: Medium">🟡 Medium</span>
+                            <span class="game-time" aria-label="Time: 10 min">⏱️ 10 min</span>
+                        </div>
+                        <button class="btn btn-game" aria-label="Play Pattern Detective">Play Now</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about" aria-labelledby="about-heading">
+        <div class="container">
+            <header class="section-header">
+                <h2 id="about-heading" class="section-title">Why Learn AI?</h2>
+                <p class="section-subtitle">AI is everywhere! Understanding it helps you shape the future.</p>
+            </header>
+            
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3 class="about-title">AI is Everywhere!</h3>
+                    <p class="about-text">From the videos YouTube recommends, to how Netflix knows what you'll like, to self-driving cars - AI is everywhere! Learning about AI helps you understand the world around you.</p>
+                    
+                    <h3 class="about-title">You Can Create with AI!</h3>
+                    <p class="about-text">AI isn't just something scientists use - YOU can use it to make art, write stories, compose music, build games, and solve problems you care about!</p>
+                    
+                    <h3 class="about-title">Future-Ready Skills</h3>
+                    <p class="about-text">By 2030, most jobs will use AI in some way. Starting early gives you a superpower - you'll understand how to work WITH AI, not just use it!</p>
+                </div>
+                
+                <div class="about-illustration" aria-hidden="true">
+                    <div class="about-robot">
+                        <div class="robot-large">
+                            <div class="robot-head-large">
+                                <div class="robot-eye-large left"></div>
+                                <div class="robot-eye-large right"></div>
+                                <div class="robot-antenna-large"></div>
+                            </div>
+                            <div class="robot-body-large">
+                                <div class="robot-heart">❤️</div>
+                            </div>
+                        </div>
+                        <div class="about-float-items" aria-hidden="true">
+                            <span class="float-item">🎨</span>
+                            <span class="float-item">🎮</span>
+                            <span class="float-item">🎵</span>
+                            <span class="float-item">📚</span>
+                            <span class="float-item">🚀</span>
+                            <span class="float-item">🌟</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features" role="list" aria-label="Learning features">
+                <article class="feature" role="listitem">
+                    <div class="feature-icon" aria-hidden="true">🎯</div>
+                    <h3 class="feature-title">Kid-Friendly Lessons</h3>
+                    <p class="feature-desc">Simple explanations with fun examples and colorful illustrations</p>
+                </article>
+                <article class="feature" role="listitem">
+                    <div class="feature-icon" aria-hidden="true">🎮</div>
+                    <h3 class="feature-title">Interactive Games</h3>
+                    <p class="feature-desc">Learn by playing! Games that teach AI concepts through play</p>
+                </article>
+                <article class="feature" role="listitem">
+                    <div class="feature-icon" aria-hidden="true">🏆</div>
+                    <h3 class="feature-title">Earn Badges</h3>
+                    <p class="feature-desc">Collect badges and certificates as you complete lessons</p>
+                </article>
+                <article class="feature" role="listitem">
+                    <div class="feature-icon" aria-hidden="true">👨‍👩‍👧‍👦</div>
+                    <h3 class="feature-title">Parent & Teacher Guides</h3>
+                    <p class="feature-desc">Resources to help adults support kids' AI learning journey</p>
+                </article>
+                <article class="feature" role="listitem">
+                    <div class="feature-icon" aria-hidden="true">🔒</div>
+                    <h3 class="feature-title">Safe & Private</h3>
+                    <p class="feature-desc">No ads, no tracking, no personal data collected - ever!</p>
+                </article>
+                <article class="feature" role="listitem">
+                    <div class="feature-icon" aria-hidden="true">🌍</div>
+                    <h3 class="feature-title">Available in Many Languages</h3>
+                    <p class="feature-desc">Learn in English, Spanish, French, Chinese, and more!</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" aria-labelledby="cta-heading">
+        <div class="container">
+            <div class="cta-content">
+                <h2 id="cta-heading" class="cta-title">Ready to Start Your AI Adventure?</h2>
+                <p class="cta-text">Join thousands of kids learning AI the fun way!</p>
+                <div class="cta-buttons">
+                    <a href="#lessons" class="btn btn-primary btn-large">Start Learning Free! 🚀</a>
+                    <a href="#about" class="btn btn-outline btn-large">For Parents & Teachers 👨‍👩‍👧‍👦</a>
+                </div>
+                <p class="cta-note">Completely free • No sign-up needed • Safe for kids</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo" aria-label="AI for Kids Home">
+                        <span class="logo-icon" aria-hidden="true">🤖</span>
+                        <span class="logo-text">AI for Kids</span>
+                    </a>
+                    <p class="footer-tagline">Making AI fun and accessible for every kid!</p>
+                    <div class="social-links" role="list" aria-label="Social links">
+                        <a href="#" class="social-link" role="listitem" aria-label="Follow us on YouTube" aria-hidden="true">▶️</a>
+                        <a href="#" class="social-link" role="listitem" aria-label="Follow us on Twitter" aria-hidden="true">🐦</a>
+                        <a href="#" class="social-link" role="listitem" aria-label="Follow us on Instagram" aria-hidden="true">📷</a>
+                        <a href="#" class="social-link" role="listitem" aria-label="Email us" aria-hidden="true">📧</a>
+                    </div>
+                </div>
+                
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <div class="footer-nav-col">
+                        <h4 class="footer-nav-title">Learn</h4>
+                        <ul>
+                            <li><a href="#lessons" class="footer-link">All Lessons</a></li>
+                            <li><a href="#games" class="footer-link">All Games</a></li>
+                            <li><a href="#" class="footer-link">Earn Badges</a></li>
+                            <li><a href="#" class="footer-link">Progress Tracker</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-col">
+                        <h4 class="footer-nav-title">Resources</h4>
+                        <ul>
+                            <li><a href="#" class="footer-link">Parent Guide</a></li>
+                            <li><a href="#" class="footer-link">Teacher Resources</a></li>
+                            <li><a href="#" class="footer-link">FAQ</a></li>
+                            <li><a href="#" class="footer-link">Glossary</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-col">
+                        <h4 class="footer-nav-title">About</h4>
+                        <ul>
+                            <li><a href="#about" class="footer-link">Our Mission</a></li>
+                            <li><a href="#" class="footer-link">Team</a></li>
+                            <li><a href="#" class="footer-link">Press</a></li>
+                            <li><a href="#" class="footer-link">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-col">
+                        <h4 class="footer-nav-title">Legal</h4>
+                        <ul>
+                            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                            <li><a href="#" class="footer-link">Terms of Use</a></li>
+                            <li><a href="#" class="footer-link">COPPA Compliance</a></li>
+                            <li><a href="#" class="footer-link">Accessibility</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 AI for Kids. Made with ❤️ for curious minds everywhere.</p>
+                <p class="footer-note">Built with love for the next generation of AI creators! 🚀</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
