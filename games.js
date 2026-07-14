@@ -120,6 +120,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /* ---------- Game Switching ---------- */
+function scrollTabs(dir) {
+    var tabs = document.getElementById('gameTabs');
+    if (!tabs) return;
+    var scrollAmount = 200;
+    tabs.scrollBy({ left: dir === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+}
+
 function switchGame(name) {
     document.querySelectorAll('.game-section').forEach(function (s) {
         s.classList.remove('active');

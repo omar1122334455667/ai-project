@@ -65,7 +65,9 @@
 <!-- Game Selector Tabs -->
 <section class="game-nav-section">
     <div class="container">
-        <div class="game-tabs" id="gameTabs">
+        <div class="game-tabs-wrapper">
+            <button class="game-tabs-arrow left" id="tabsLeft" onclick="scrollTabs('left')">◀</button>
+            <div class="game-tabs" id="gameTabs">
             <button class="game-tab active" data-game="tictactoe" onclick="switchGame('tictactoe')">❌⭕ Tic Tac Toe</button>
             <button class="game-tab" data-game="snake" onclick="switchGame('snake')">🐍 Snake</button>
             <button class="game-tab" data-game="memory" onclick="switchGame('memory')">🧠 Memory</button>
@@ -83,6 +85,8 @@
             <button class="game-tab" data-game="rps" onclick="switchGame('rps')">✊ RPS</button>
             <button class="game-tab" data-game="maze" onclick="switchGame('maze')">🏃 Maze</button>
             <button class="game-tab" data-game="typing" onclick="switchGame('typing')">⌨️ Typing</button>
+        </div>
+            <button class="game-tabs-arrow right" id="tabsRight" onclick="scrollTabs('right')">▶</button>
         </div>
     </div>
 </section>
