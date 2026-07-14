@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI for Kids - Fun Games!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="games.css">
+</head>
+<body data-color="default">
+
+<!-- Pixel Art Reaction Canvas -->
+<canvas id="pixelCanvas"></canvas>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-emoji">🤖</span>
+            <span class="logo-text">AI for Kids</span>
+        </a>
+        <div class="nav-right">
+            <a href="index.html" class="nav-btn back-btn">📚 Home</a>
+            <button class="color-theme-btn" id="colorThemeBtn" title="Change Colors">🎨</button>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-icon" id="themeIcon">🌙</span>
+            </button>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#tictactoe" class="nav-link active">❌⭕ Tic Tac Toe</a></li>
+            <li><a href="#snake" class="nav-link">🐍 Snake</a></li>
+            <li><a href="#memory" class="nav-link">🧠 Memory</a></li>
+            <li><a href="#whack" class="nav-link">🔨 Whack</a></li>
+            <li><a href="#puzzle2048" class="nav-link">🔢 2048</a></li>
+            <li><a href="#connect4" class="nav-link">🔴 Connect 4</a></li>
+            <li><a href="#simon" class="nav-link">🎨 Simon</a></li>
+            <li><a href="#breakout" class="nav-link">🧱 Breakout</a></li>
+            <li><a href="#pong" class="nav-link">🏓 Pong</a></li>
+            <li><a href="#spaceinv" class="nav-link">👾 Space</a></li>
+            <li><a href="#flappy" class="nav-link">🐦 Flappy</a></li>
+            <li><a href="#reaction" class="nav-link">⚡ Reaction</a></li>
+            <li><a href="#wordscramble" class="nav-link">🔤 Words</a></li>
+            <li><a href="#numguess" class="nav-link">🔢 Guess</a></li>
+            <li><a href="#rps" class="nav-link">✊ RPS</a></li>
+            <li><a href="#maze" class="nav-link">🏃 Maze</a></li>
+            <li><a href="#typing" class="nav-link">⌨️ Typing</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="hero-container">
+        <div class="hero-robot">🎮</div>
+        <h1>17 <span class="highlight">Epic Games</span> to Play!</h1>
+        <p class="hero-sub" id="heroSub">Pick a game below and start playing! Win to earn fun AI facts!</p>
+    </div>
+</section>
+
+<!-- Game Selector Tabs -->
+<section class="game-nav-section">
+    <div class="container">
+        <div class="game-tabs" id="gameTabs">
+            <button class="game-tab active" data-game="tictactoe" onclick="switchGame('tictactoe')">❌⭕ Tic Tac Toe</button>
+            <button class="game-tab" data-game="snake" onclick="switchGame('snake')">🐍 Snake</button>
+            <button class="game-tab" data-game="memory" onclick="switchGame('memory')">🧠 Memory</button>
+            <button class="game-tab" data-game="whack" onclick="switchGame('whack')">🔨 Whack</button>
+            <button class="game-tab" data-game="puzzle2048" onclick="switchGame('puzzle2048')">🔢 2048</button>
+            <button class="game-tab" data-game="connect4" onclick="switchGame('connect4')">🔴 Connect 4</button>
+            <button class="game-tab" data-game="simon" onclick="switchGame('simon')">🎨 Simon</button>
+            <button class="game-tab" data-game="breakout" onclick="switchGame('breakout')">🧱 Breakout</button>
+            <button class="game-tab" data-game="pong" onclick="switchGame('pong')">🏓 Pong</button>
+            <button class="game-tab" data-game="spaceinv" onclick="switchGame('spaceinv')">👾 Space</button>
+            <button class="game-tab" data-game="flappy" onclick="switchGame('flappy')">🐦 Flappy</button>
+            <button class="game-tab" data-game="reaction" onclick="switchGame('reaction')">⚡ Reaction</button>
+            <button class="game-tab" data-game="wordscramble" onclick="switchGame('wordscramble')">🔤 Words</button>
+            <button class="game-tab" data-game="numguess" onclick="switchGame('numguess')">🔢 Guess</button>
+            <button class="game-tab" data-game="rps" onclick="switchGame('rps')">✊ RPS</button>
+            <button class="game-tab" data-game="maze" onclick="switchGame('maze')">🏃 Maze</button>
+            <button class="game-tab" data-game="typing" onclick="switchGame('typing')">⌨️ Typing</button>
+        </div>
+    </div>
+</section>
+
+<!-- GAME 1: TIC TAC TOE -->
+<section class="game-section active" id="tictactoe">
+    <div class="container">
+        <div class="game-header"><h2>❌⭕ Tic Tac Toe</h2><p>Choose your difficulty and try to beat the AI!</p></div>
+        <div class="difficulty-bar" id="tttDiffBar">
+            <button class="diff-btn btn-easy active" onclick="setTTTLevel('easy')">🟢 Easy</button>
+            <button class="diff-btn btn-medium" onclick="setTTTLevel('medium')">🟡 Medium</button>
+            <button class="diff-btn btn-hard" onclick="setTTTLevel('hard')">🟠 Hard</button>
+            <button class="diff-btn btn-veryhard" onclick="setTTTLevel('veryhard')">🔴 Very Hard</button>
+            <button class="diff-btn btn-impossible" onclick="setTTTLevel('impossible')">💀 Impossible</button>
+        </div>
+        <div class="score-bar">
+            <span class="score-item">🏆 Wins: <strong id="tttWins">0</strong></span>
+            <span class="score-item">❌ Losses: <strong id="tttLosses">0</strong></span>
+            <span class="score-item">🤝 Draws: <strong id="tttDraws">0</strong></span>
+        </div>
+        <div class="ttt-board" id="tttBoard">
+            <div class="ttt-cell" onclick="tttMove(0)"></div><div class="ttt-cell" onclick="tttMove(1)"></div><div class="ttt-cell" onclick="tttMove(2)"></div>
+            <div class="ttt-cell" onclick="tttMove(3)"></div><div class="ttt-cell" onclick="tttMove(4)"></div><div class="ttt-cell" onclick="tttMove(5)"></div>
+            <div class="ttt-cell" onclick="tttMove(6)"></div><div class="ttt-cell" onclick="tttMove(7)"></div><div class="ttt-cell" onclick="tttMove(8)"></div>
+        </div>
+        <div class="ttt-status" id="tttStatus">Your turn! You are <span class="x-color">X</span></div>
+        <div class="win-fact hidden" id="tttFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="tttFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="resetTTT()">🔄 New Game</button></div>
+    </div>
+</section>
+
+<!-- GAME 2: SNAKE -->
+<section class="game-section" id="snake">
+    <div class="container">
+        <div class="game-header"><h2>🐍 Snake</h2><p>Eat the food, grow the snake, don't hit the walls!</p></div>
+        <div class="difficulty-bar">
+            <button class="diff-btn btn-easy active" onclick="setSnakeLevel('easy')">🟢 Slow</button>
+            <button class="diff-btn btn-medium" onclick="setSnakeLevel('medium')">🟡 Normal</button>
+            <button class="diff-btn btn-hard" onclick="setSnakeLevel('hard')">🟠 Fast</button>
+            <button class="diff-btn btn-veryhard" onclick="setSnakeLevel('veryhard')">🔴 Crazy</button>
+        </div>
+        <div class="score-bar">
+            <span class="score-item">🍎 Score: <strong id="snakeScore">0</strong></span>
+            <span class="score-item">🏅 Best: <strong id="snakeBest">0</strong></span>
+        </div>
+        <div class="snake-container"><canvas id="snakeCanvas" width="400" height="400"></canvas></div>
+        <div class="snake-controls">
+            <button class="ctrl-btn" onclick="snakeDir('up')">⬆️</button>
+            <div><button class="ctrl-btn" onclick="snakeDir('left')">⬅️</button><button class="ctrl-btn" onclick="snakeDir('down')">⬇️</button><button class="ctrl-btn" onclick="snakeDir('right')">➡️</button></div>
+        </div>
+        <div class="ttt-status" id="snakeStatus">Press Start to play!</div>
+        <div class="win-fact hidden" id="snakeFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="snakeFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startSnake()">▶️ Start</button> <button class="btn btn-outline-warm" onclick="resetSnake()">🔄 Reset</button></div>
+    </div>
+</section>
+
+<!-- GAME 3: MEMORY MATCH -->
+<section class="game-section" id="memory">
+    <div class="container">
+        <div class="game-header"><h2>🧠 Memory Match</h2><p>Flip cards and find matching pairs!</p></div>
+        <div class="difficulty-bar">
+            <button class="diff-btn btn-easy active" onclick="setMemoryLevel('easy')">🟢 4 Pairs</button>
+            <button class="diff-btn btn-medium" onclick="setMemoryLevel('medium')">🟡 6 Pairs</button>
+            <button class="diff-btn btn-hard" onclick="setMemoryLevel('hard')">🟠 8 Pairs</button>
+            <button class="diff-btn btn-veryhard" onclick="setMemoryLevel('veryhard')">🔴 10 Pairs</button>
+        </div>
+        <div class="score-bar">
+            <span class="score-item">🎯 Moves: <strong id="memMoves">0</strong></span>
+            <span class="score-item">✅ Pairs: <strong id="memPairs">0</strong>/<strong id="memTotal">4</strong></span>
+            <span class="score-item">⏱️ Time: <strong id="memTime">0s</strong></span>
+        </div>
+        <div class="memory-grid" id="memoryGrid"></div>
+        <div class="ttt-status" id="memStatus">Click any card to start!</div>
+        <div class="win-fact hidden" id="memFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="memFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="initMemory()">🔄 New Game</button></div>
+    </div>
+</section>
+
+<!-- GAME 4: WHACK-A-MOLE -->
+<section class="game-section" id="whack">
+    <div class="container">
+        <div class="game-header"><h2>🔨 Whack-a-Mole</h2><p>Click the moles before they hide!</p></div>
+        <div class="difficulty-bar">
+            <button class="diff-btn btn-easy active" onclick="setWhackLevel('easy')">🟢 Easy</button>
+            <button class="diff-btn btn-medium" onclick="setWhackLevel('medium')">🟡 Medium</button>
+            <button class="diff-btn btn-hard" onclick="setWhackLevel('hard')">🟠 Hard</button>
+            <button class="diff-btn btn-veryhard" onclick="setWhackLevel('veryhard')">🔴 Insane</button>
+        </div>
+        <div class="score-bar">
+            <span class="score-item">🎯 Score: <strong id="whackScore">0</strong></span>
+            <span class="score-item">❤️ Lives: <strong id="whackLives">3</strong></span>
+            <span class="score-item">⏱️ Time: <strong id="whackTime">30s</strong></span>
+        </div>
+        <div class="whack-grid" id="whackGrid">
+            <div class="whack-hole" onclick="whackMole(0)"><span class="mole">🐹</span></div>
+            <div class="whack-hole" onclick="whackMole(1)"><span class="mole">🐹</span></div>
+            <div class="whack-hole" onclick="whackMole(2)"><span class="mole">🐹</span></div>
+            <div class="whack-hole" onclick="whackMole(3)"><span class="mole">🐹</span></div>
+            <div class="whack-hole" onclick="whackMole(4)"><span class="mole">🐹</span></div>
+            <div class="whack-hole" onclick="whackMole(5)"><span class="mole">🐹</span></div>
+            <div class="whack-hole" onclick="whackMole(6)"><span class="mole">🐹</span></div>
+            <div class="whack-hole" onclick="whackMole(7)"><span class="mole">🐹</span></div>
+            <div class="whack-hole" onclick="whackMole(8)"><span class="mole">🐹</span></div>
+        </div>
+        <div class="ttt-status" id="whackStatus">Press Start to play!</div>
+        <div class="win-fact hidden" id="whackFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="whackFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startWhack()">▶️ Start</button> <button class="btn btn-outline-warm" onclick="resetWhack()">🔄 Reset</button></div>
+    </div>
+</section>
+
+<!-- GAME 5: 2048 -->
+<section class="game-section" id="puzzle2048">
+    <div class="container">
+        <div class="game-header"><h2>🔢 2048</h2><p>Slide tiles and combine numbers to reach 2048!</p></div>
+        <div class="score-bar">
+            <span class="score-item">🏆 Score: <strong id="pScore">0</strong></span>
+            <span class="score-item">🏅 Best: <strong id="pBest">0</strong></span>
+        </div>
+        <div class="puzzle2048-board" id="puzzleBoard"></div>
+        <div class="ttt-status" id="pStatus">Use arrow keys or buttons to play!</div>
+        <div class="puzzle-controls">
+            <button class="ctrl-btn" onclick="puzzleMove('up')">⬆️</button>
+            <div><button class="ctrl-btn" onclick="puzzleMove('left')">⬅️</button><button class="ctrl-btn" onclick="puzzleMove('down')">⬇️</button><button class="ctrl-btn" onclick="puzzleMove('right')">➡️</button></div>
+        </div>
+        <div class="win-fact hidden" id="pFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="pFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="initPuzzle()">🔄 New Game</button></div>
+    </div>
+</section>
+
+<!-- GAME 6: CONNECT 4 -->
+<section class="game-section" id="connect4">
+    <div class="container">
+        <div class="game-header"><h2>🔴 Connect 4</h2><p>Drop your disc and connect 4 in a row to win!</p></div>
+        <div class="difficulty-bar">
+            <button class="diff-btn btn-easy active" onclick="setC4Level('easy')">🟢 Easy</button>
+            <button class="diff-btn btn-medium" onclick="setC4Level('medium')">🟡 Medium</button>
+            <button class="diff-btn btn-hard" onclick="setC4Level('hard')">🟠 Hard</button>
+            <button class="diff-btn btn-veryhard" onclick="setC4Level('veryhard')">🔴 Expert</button>
+        </div>
+        <div class="score-bar">
+            <span class="score-item">🏆 Wins: <strong id="c4Wins">0</strong></span>
+            <span class="score-item">❌ Losses: <strong id="c4Losses">0</strong></span>
+        </div>
+        <div class="connect4-board" id="c4Board"></div>
+        <div class="ttt-status" id="c4Status">Your turn! You are 🔴</div>
+        <div class="win-fact hidden" id="c4Fact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="c4FactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="resetC4()">🔄 New Game</button></div>
+    </div>
+</section>
+
+<!-- GAME 7: SIMON SAYS -->
+<section class="game-section" id="simon">
+    <div class="container">
+        <div class="game-header"><h2>🎨 Simon Says</h2><p>Watch the pattern and repeat it!</p></div>
+        <div class="score-bar">
+            <span class="score-item">🏆 Level: <strong id="simLevel">1</strong></span>
+            <span class="score-item">🏅 Best: <strong id="simBest">0</strong></span>
+        </div>
+        <div class="simon-board" id="simonBoard">
+            <div class="simon-btn simon-green" id="simGreen" onclick="simonClick(0)"></div>
+            <div class="simon-btn simon-red" id="simRed" onclick="simonClick(1)"></div>
+            <div class="simon-btn simon-yellow" id="simYellow" onclick="simonClick(2)"></div>
+            <div class="simon-btn simon-blue" id="simBlue" onclick="simonClick(3)"></div>
+            <div class="simon-center" id="simonCenter"><span id="simonCenterText">Press Start</span></div>
+        </div>
+        <div class="ttt-status" id="simStatus">Watch the pattern carefully!</div>
+        <div class="win-fact hidden" id="simFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="simFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startSimon()">▶️ Start</button></div>
+    </div>
+</section>
+
+<!-- GAME 8: BREAKOUT -->
+<section class="game-section" id="breakout">
+    <div class="container">
+        <div class="game-header"><h2>🧱 Breakout</h2><p>Smash all the bricks with the ball!</p></div>
+        <div class="difficulty-bar">
+            <button class="diff-btn btn-easy active" onclick="setBreakoutLevel('easy')">🟢 Easy</button>
+            <button class="diff-btn btn-medium" onclick="setBreakoutLevel('medium')">🟡 Medium</button>
+            <button class="diff-btn btn-hard" onclick="setBreakoutLevel('hard')">🟠 Hard</button>
+        </div>
+        <div class="score-bar">
+            <span class="score-item">🏆 Score: <strong id="brkScore">0</strong></span>
+            <span class="score-item">❤️ Lives: <strong id="brkLives">3</strong></span>
+        </div>
+        <div class="snake-container"><canvas id="breakoutCanvas" width="480" height="360"></canvas></div>
+        <div class="snake-controls">
+            <button class="ctrl-btn" onclick="breakoutDir('left')">⬅️</button>
+            <button class="ctrl-btn" onclick="breakoutDir('right')">➡️</button>
+        </div>
+        <div class="ttt-status" id="brkStatus">Press Start to play!</div>
+        <div class="win-fact hidden" id="brkFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="brkFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startBreakout()">▶️ Start</button> <button class="btn btn-outline-warm" onclick="resetBreakout()">🔄 Reset</button></div>
+    </div>
+</section>
+
+<!-- GAME 9: PONG -->
+<section class="game-section" id="pong">
+    <div class="container">
+        <div class="game-header"><h2>🏓 Pong</h2><p>Beat the AI — first to 7 wins!</p></div>
+        <div class="difficulty-bar">
+            <button class="diff-btn btn-easy active" onclick="setPongLevel('easy')">🟢 Easy</button>
+            <button class="diff-btn btn-medium" onclick="setPongLevel('medium')">🟡 Medium</button>
+            <button class="diff-btn btn-hard" onclick="setPongLevel('hard')">🟠 Hard</button>
+        </div>
+        <div class="score-bar">
+            <span class="score-item">🧑 You: <strong id="pongPlayer">0</strong></span>
+            <span class="score-item">🤖 AI: <strong id="pongAI">0</strong></span>
+        </div>
+        <div class="snake-container"><canvas id="pongCanvas" width="480" height="320"></canvas></div>
+        <div class="snake-controls">
+            <button class="ctrl-btn" onclick="pongDir('up')">⬆️</button>
+            <div><button class="ctrl-btn" onclick="pongDir('down')">⬇️</button></div>
+        </div>
+        <div class="ttt-status" id="pongStatus">Press Start to play!</div>
+        <div class="win-fact hidden" id="pongFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="pongFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startPong()">▶️ Start</button> <button class="btn btn-outline-warm" onclick="resetPong()">🔄 Reset</button></div>
+    </div>
+</section>
+
+<!-- GAME 10: SPACE INVADERS -->
+<section class="game-section" id="spaceinv">
+    <div class="container">
+        <div class="game-header"><h2>👾 Space Invaders</h2><p>Shoot the aliens before they reach you!</p></div>
+        <div class="difficulty-bar">
+            <button class="diff-btn btn-easy active" onclick="setSpaceLevel('easy')">🟢 Easy</button>
+            <button class="diff-btn btn-medium" onclick="setSpaceLevel('medium')">🟡 Medium</button>
+            <button class="diff-btn btn-hard" onclick="setSpaceLevel('hard')">🟠 Hard</button>
+        </div>
+        <div class="score-bar">
+            <span class="score-item">🏆 Score: <strong id="spaceScore">0</strong></span>
+            <span class="score-item">❤️ Lives: <strong id="spaceLives">3</strong></span>
+        </div>
+        <div class="snake-container"><canvas id="spaceCanvas" width="480" height="360"></canvas></div>
+        <div class="snake-controls">
+            <button class="ctrl-btn" onclick="spaceDir('left')">⬅️</button>
+            <button class="ctrl-btn" onclick="spaceShoot()">🔥</button>
+            <button class="ctrl-btn" onclick="spaceDir('right')">➡️</button>
+        </div>
+        <div class="ttt-status" id="spaceStatus">Press Start to play!</div>
+        <div class="win-fact hidden" id="spaceFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="spaceFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startSpace()">▶️ Start</button> <button class="btn btn-outline-warm" onclick="resetSpace()">🔄 Reset</button></div>
+    </div>
+</section>
+
+<!-- GAME 11: FLAPPY BIRD -->
+<section class="game-section" id="flappy">
+    <div class="container">
+        <div class="game-header"><h2>🐦 Flappy Bird</h2><p>Tap to fly through the pipes!</p></div>
+        <div class="score-bar">
+            <span class="score-item">🏆 Score: <strong id="flapScore">0</strong></span>
+            <span class="score-item">🏅 Best: <strong id="flapBest">0</strong></span>
+        </div>
+        <div class="snake-container"><canvas id="flapCanvas" width="320" height="480"></canvas></div>
+        <div class="snake-controls"><button class="ctrl-btn btn-flap" onclick="flapTap()">🦅 Tap to Fly!</button></div>
+        <div class="ttt-status" id="flapStatus">Press Start to play!</div>
+        <div class="win-fact hidden" id="flapFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="flapFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startFlappy()">▶️ Start</button> <button class="btn btn-outline-warm" onclick="resetFlappy()">🔄 Reset</button></div>
+    </div>
+</section>
+
+<!-- GAME 12: REACTION TIME -->
+<section class="game-section" id="reaction">
+    <div class="container">
+        <div class="game-header"><h2>⚡ Reaction Time</h2><p>Click as fast as you can when the color changes!</p></div>
+        <div class="score-bar">
+            <span class="score-item">⚡ Best: <strong id="reactBest">---</strong></span>
+            <span class="score-item">🎯 Tries: <strong id="reactTries">0</strong></span>
+        </div>
+        <div class="reaction-zone" id="reactZone" onclick="reactClick()">
+            <span class="react-text" id="reactText">Press Start!</span>
+        </div>
+        <div class="ttt-status" id="reactStatus">Test your reflexes!</div>
+        <div class="win-fact hidden" id="reactFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="reactFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startReaction()">▶️ Start</button></div>
+    </div>
+</section>
+
+<!-- GAME 13: WORD SCRAMBLE -->
+<section class="game-section" id="wordscramble">
+    <div class="container">
+        <div class="game-header"><h2>🔤 Word Scramble</h2><p>Unscramble the letters to find the word!</p></div>
+        <div class="score-bar">
+            <span class="score-item">🏆 Score: <strong id="wsScore">0</strong></span>
+            <span class="score-item">⏱️ Time: <strong id="wsTime">30s</strong></span>
+        </div>
+        <div class="word-display" id="wsScrambled">---</div>
+        <input type="text" class="word-input" id="wsInput" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')checkWord()">
+        <div class="ttt-status" id="wsStatus">Press Start to play!</div>
+        <div class="win-fact hidden" id="wsFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="wsFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startWordScramble()">▶️ Start</button> <button class="btn btn-outline-warm" onclick="skipWord()">⏭️ Skip</button></div>
+    </div>
+</section>
+
+<!-- GAME 14: NUMBER GUESS -->
+<section class="game-section" id="numguess">
+    <div class="container">
+        <div class="game-header"><h2>🔢 Number Guess</h2><p>Guess the secret number between 1 and 100!</p></div>
+        <div class="difficulty-bar">
+            <button class="diff-btn btn-easy active" onclick="setGuessLevel('easy')">🟢 1-50</button>
+            <button class="diff-btn btn-medium" onclick="setGuessLevel('medium')">🟡 1-100</button>
+            <button class="diff-btn btn-hard" onclick="setGuessLevel('hard')">🟠 1-500</button>
+        </div>
+        <div class="score-bar">
+            <span class="score-item">🎯 Guesses: <strong id="ngGuesses">0</strong></span>
+            <span class="score-item">🏆 Wins: <strong id="ngWins">0</strong></span>
+        </div>
+        <div class="guess-display" id="ngDisplay">?</div>
+        <div class="guess-hint" id="ngHint">I'm thinking of a number...</div>
+        <input type="number" class="word-input" id="ngInput" placeholder="Enter your guess..." onkeydown="if(event.key==='Enter')guessNumber()">
+        <div class="ttt-status" id="ngStatus">Press Start to play!</div>
+        <div class="win-fact hidden" id="ngFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="ngFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startNumberGuess()">▶️ New Number</button></div>
+    </div>
+</section>
+
+<!-- GAME 15: ROCK PAPER SCISSORS -->
+<section class="game-section" id="rps">
+    <div class="container">
+        <div class="game-header"><h2>✊ Rock Paper Scissors</h2><p>Beat the AI in classic RPS!</p></div>
+        <div class="score-bar">
+            <span class="score-item">🏆 Wins: <strong id="rpsWins">0</strong></span>
+            <span class="score-item">❌ Losses: <strong id="rpsLosses">0</strong></span>
+            <span class="score-item">🤝 Draws: <strong id="rpsDraws">0</strong></span>
+        </div>
+        <div class="rps-choices">
+            <button class="rps-btn" onclick="rpsPlay('rock')">🪨</button>
+            <button class="rps-btn" onclick="rpsPlay('paper')">📄</button>
+            <button class="rps-btn" onclick="rpsPlay('scissors')">✂️</button>
+        </div>
+        <div class="rps-battle">
+            <div class="rps-player" id="rpsPlayerChoice">❓</div>
+            <div class="rps-vs">VS</div>
+            <div class="rps-player" id="rpsAIChoice">❓</div>
+        </div>
+        <div class="ttt-status" id="rpsStatus">Pick your weapon!</div>
+        <div class="win-fact hidden" id="rpsFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="rpsFactText"></p></div></div></div>
+    </div>
+</section>
+
+<!-- GAME 16: MAZE RUNNER -->
+<section class="game-section" id="maze">
+    <div class="container">
+        <div class="game-header"><h2>🏃 Maze Runner</h2><p>Navigate from start to finish!</p></div>
+        <div class="difficulty-bar">
+            <button class="diff-btn btn-easy active" onclick="setMazeLevel('easy')">🟢 Small</button>
+            <button class="diff-btn btn-medium" onclick="setMazeLevel('medium')">🟡 Medium</button>
+            <button class="diff-btn btn-hard" onclick="setMazeLevel('hard')">🟠 Large</button>
+        </div>
+        <div class="score-bar">
+            <span class="score-item">⏱️ Time: <strong id="mazeTime">0s</strong></span>
+            <span class="score-item">🏅 Best: <strong id="mazeBest">---</strong></span>
+        </div>
+        <div class="snake-container"><canvas id="mazeCanvas" width="400" height="400"></canvas></div>
+        <div class="snake-controls">
+            <button class="ctrl-btn" onclick="mazeDir('up')">⬆️</button>
+            <div><button class="ctrl-btn" onclick="mazeDir('left')">⬅️</button><button class="ctrl-btn" onclick="mazeDir('down')">⬇️</button><button class="ctrl-btn" onclick="mazeDir('right')">➡️</button></div>
+        </div>
+        <div class="ttt-status" id="mazeStatus">Press Start to play!</div>
+        <div class="win-fact hidden" id="mazeFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="mazeFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startMaze()">▶️ Start</button> <button class="btn btn-outline-warm" onclick="resetMaze()">🔄 Reset</button></div>
+    </div>
+</section>
+
+<!-- GAME 17: TYPING SPEED -->
+<section class="game-section" id="typing">
+    <div class="container">
+        <div class="game-header"><h2>⌨️ Typing Speed</h2><p>Type the words as fast as you can!</p></div>
+        <div class="score-bar">
+            <span class="score-item">🏆 WPM: <strong id="typeWPM">0</strong></span>
+            <span class="score-item">✅ Correct: <strong id="typeCorrect">0</strong></span>
+            <span class="score-item">⏱️ Time: <strong id="typeTime">30s</strong></span>
+        </div>
+        <div class="typing-display" id="typeDisplay">Press Start to begin!</div>
+        <input type="text" class="word-input" id="typeInput" placeholder="Type here..." oninput="typeCheck()" onkeydown="if(event.key==='Enter')typeNext()">
+        <div class="ttt-status" id="typeStatus">Press Start to play!</div>
+        <div class="win-fact hidden" id="typeFact"><div class="fact-card"><span class="fact-icon">🧠</span><div><strong>AI Fact You Earned!</strong><p id="typeFactText"></p></div></div></div>
+        <div style="text-align:center;margin-top:16px;"><button class="btn btn-warm" onclick="startTyping()">▶️ Start</button></div>
+    </div>
+</section>
+
+<!-- Facts Collection -->
+<section class="facts-section" id="facts">
+    <div class="container">
+        <div class="game-header"><h2>🧠 AI Facts You've Earned</h2><p>Win games to unlock fun AI facts!</p></div>
+        <div class="facts-grid" id="factsGrid"><div class="fact-empty">Win games to collect AI facts here!</div></div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand"><span class="logo-emoji">🤖</span><span class="logo-text">AI for Kids</span><p>Fun games to learn about AI!</p></div>
+            <div class="footer-links"><a href="index.html">📚 Home</a><a href="#facts">🧠 Facts</a></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 AI for Kids | Made with ❤️ for curious minds</p></div>
+    </div>
+</footer>
+
+<script src="games.js"></script>
+</body>
+</html>

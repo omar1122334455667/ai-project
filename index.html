@@ -4,487 +4,687 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI for Kids - Learn AI the Fun Way!</title>
-    <meta name="description" content="Learn AI in a fun, simple way designed for kids! Interactive lessons, games, and activities to understand AI.">
+    <meta name="description" content="Learn AI without coding! Fun lessons and games for kids.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <div class="nav-container">
-            <a href="#" class="nav-logo" aria-label="AI for Kids Home">
-                <span class="logo-icon" aria-hidden="true">🤖</span>
-                <span class="logo-text">AI for Kids</span>
-            </a>
-            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
-                <span class="hamburger" aria-hidden="true"></span>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#" class="nav-logo">
+            <span class="logo-emoji">🤖</span>
+            <span class="logo-text">AI for Kids</span>
+        </a>
+        <div class="nav-right">
+            <div class="user-badge" id="userBadge" style="display:none;">
+                <span class="user-avatar">😊</span>
+                <span class="user-name" id="userNameDisplay"></span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-icon" id="themeIcon">🌙</span>
             </button>
-            <ul id="nav-menu" class="nav-menu" role="menubar">
-                <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
-                <li role="none"><a href="#lessons" class="nav-link" role="menuitem">Lessons</a></li>
-                <li role="none"><a href="#games" class="nav-link" role="menuitem">Games</a></li>
-                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
-            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </nav>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home" class="nav-link active">🏠 Home</a></li>
+            <li><a href="#lessons" class="nav-link">📚 Lessons</a></li>
+            <li><a href="games.html" class="nav-link">🎮 Games</a></li>
+            <li><a href="#final-test" class="nav-link">🏆 Final Test</a></li>
+            <li><a href="#chat-section" class="nav-link">🤖 AI Chat</a></li>
+            <li><a href="#about" class="nav-link">💡 About</a></li>
+        </ul>
+    </div>
+</nav>
 
-    <!-- Hero Section -->
-    <header id="home" class="hero" role="banner">
-        <div class="hero-bg" aria-hidden="true">
-            <div class="floating-shapes" aria-hidden="true">
-                <div class="shape shape-1" aria-hidden="true">🤖</div>
-                <div class="shape shape-2" aria-hidden="true">🧠</div>
-                <div class="shape shape-3" aria-hidden="true">🎮</div>
-                <div class="shape shape-4" aria-hidden="true">🎨</div>
-                <div class="shape shape-5" aria-hidden="true">🎵</div>
-                <div class="shape shape-6" aria-hidden="true">🤖</div>
+<!-- Name Entry Modal -->
+<div class="name-modal-overlay" id="nameModal">
+    <div class="name-modal">
+        <div class="name-modal-robot">🤖</div>
+        <h2>Welcome to AI for Kids!</h2>
+        <p>What's your name, young explorer?</p>
+        <input type="text" id="nameInput" class="name-input" placeholder="Type your name here..." maxlength="20" onkeydown="if(event.key==='Enter')saveName()">
+        <button class="btn btn-warm btn-large" onclick="saveName()">Let's Go! 🚀</button>
+        <p class="name-hint">Examples: Jake, Omar, Ali, Sara, Mia</p>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<header id="home" class="hero">
+    <div class="hero-shapes" aria-hidden="true">
+        <div class="shape s1"></div>
+        <div class="shape s2"></div>
+        <div class="shape s3"></div>
+        <div class="shape s4"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-text">
+            <div class="hero-badge">🌟 100% Free - No Coding Needed!</div>
+            <h1 id="heroGreeting">Learn <span class="highlight">AI</span> the <span class="highlight2">Fun Way</span>!</h1>
+            <p class="hero-sub" id="heroSub">Discover how computers think, learn, and create — just like you! No Python, no coding, just fun interactive lessons and games.</p>
+            <div class="hero-buttons">
+                <a href="#lessons" class="btn btn-warm">Start Learning 🚀</a>
+                <a href="#final-test" class="btn btn-warm" style="background:linear-gradient(135deg, var(--warm-pink), var(--red));">🏆 Final Test</a>
+                <a href="#games" class="btn btn-outline-warm">Play Games 🎮</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat"><span class="stat-num">18</span><span class="stat-label">Lessons</span></div>
+                <div class="stat"><span class="stat-num">18</span><span class="stat-label">Games</span></div>
+                <div class="stat"><span class="stat-num">0</span><span class="stat-label">Code Lines!</span></div>
             </div>
         </div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">Learn AI the <span class="highlight">Fun Way</span>!</h1>
-                <p class="hero-subtitle">Discover how computers think, learn, and create - just like you!</p>
-                <div class="hero-buttons">
-                    <a href="#lessons" class="btn btn-primary" role="button">Start Learning 🚀</a>
-                    <a href="#games" class="btn btn-secondary" role="button">Play Games 🎮</a>
+        <div class="hero-visual">
+            <div class="robot">
+                <div class="robot-head">
+                    <div class="antenna"></div>
+                    <div class="eyes">
+                        <div class="eye left"><div class="pupil"></div></div>
+                        <div class="eye right"><div class="pupil"></div></div>
+                    </div>
+                    <div class="mouth"></div>
                 </div>
-                <div class="hero-stats" role="list" aria-label="Learning stats">
-                    <div class="stat" role="listitem">
-                        <span class="stat-number" aria-label="10 lessons">10+</span>
-                        <span class="stat-label">Fun Lessons</span>
-                    </div>
-                    <div class="stat" role="listitem">
-                        <span class="stat-number" aria-label="20 games">20+</span>
-                        <span class="stat-label">Fun Games</span>
-                    </div>
-                    <div class="stat" role="listitem">
-                        <span class="stat-number" aria-label="1000 kids">1000+</span>
-                        <span class="stat-label">Happy Learners</span>
-                    </div>
+                <div class="robot-body">
+                    <div class="screen">AI</div>
                 </div>
+                <div class="robot-arm left-arm"></div>
+                <div class="robot-arm right-arm"></div>
             </div>
-            <div class="hero-illustration" aria-hidden="true">
-                <div class="robot-illustration" aria-hidden="true">
-                    <div class="robot-head">
-                        <div class="robot-eye left"></div>
-                        <div class="robot-eye right"></div>
-                        <div class="robot-antenna"></div>
-                    </div>
-                    <div class="robot-body">
-                        <div class="robot-screen">
-                            <span class="screen-text">AI</span>
-                        </div>
-                        <div class="robot-arms">
-                            <div class="arm left"></div>
-                            <div class="arm right"></div>
-                        </div>
-                    </div>
-                    <div class="robot-legs">
-                        <div class="leg left"></div>
-                        <div class="leg right"></div>
-                    </div>
-                </div>
-                <div class="floating-elements" aria-hidden="true">
-                    <span class="float-item">🌟</span>
-                    <span class="float-item">✨</span>
-                    <span class="float-item">🌈</span>
-                    <span class="float-item">⭐</span>
-                </div>
+            <div class="float-emojis">
+                <span class="fe" style="--d:0s;--x:80%;--y:10%">🧠</span>
+                <span class="fe" style="--d:1s;--x:10%;--y:20%">🎨</span>
+                <span class="fe" style="--d:2s;--x:90%;--y:50%">🎮</span>
+                <span class="fe" style="--d:3s;--x:5%;--y:60%">🎵</span>
+                <span class="fe" style="--d:4s;--x:85%;--y:80%">⭐</span>
             </div>
         </div>
-        <div class="scroll-indicator" aria-hidden="true">
-            <span class="scroll-text">Scroll Down</span>
-            <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
+    </div>
+</header>
+
+<!-- Lessons Section -->
+<section id="lessons" class="section lessons-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>📚 AI Lessons</h2>
+            <p>Learn step by step! Pick your difficulty and start exploring AI!</p>
         </div>
-    </header>
 
-    <!-- Lessons Section -->
-    <section id="lessons" class="lessons" aria-labelledby="lessons-heading">
-        <div class="container">
-            <header class="section-header">
-                <h2 id="lessons-heading" class="section-title">Fun AI Lessons</h2>
-                <p class="section-subtitle">Learn step by step with our friendly robot friends!</p>
-            </header>
-            
-            <div class="lessons-grid" role="list" aria-label="AI Lessons">
-                <article class="lesson-card" role="listitem">
-                    <div class="lesson-icon" aria-hidden="true">🧠</div>
-                    <div class="lesson-content">
-                        <h3 class="lesson-title">What is AI?</h3>
-                        <p class="lesson-desc">Meet Robby the Robot and learn what Artificial Intelligence really means!</p>
-                        <div class="lesson-meta">
-                            <span class="lesson-duration" aria-label="Duration: 10 minutes">⏱️ 10 min</span>
-                            <span class="lesson-level beginner" aria-label="Level: Beginner">🌱 Beginner</span>
-                        </div>
-                        <button class="btn btn-lesson" aria-label="Start lesson: What is AI?">Start Lesson</button>
-                    </div>
-                </article>
-
-                <article class="lesson-card" role="listitem">
-                    <div class="lesson-icon" aria-hidden="true">🎨</div>
-                    <div class="lesson-content">
-                        <h3 class="lesson-title">AI Makes Art!</h3>
-                        <p class="lesson-desc">Discover how AI can paint, draw, and create music just like you!</p>
-                        <div class="lesson-meta">
-                            <span class="lesson-duration" aria-label="Duration: 15 minutes">⏱️ 15 min</span>
-                            <span class="lesson-level beginner" aria-label="Level: Beginner">🌱 Beginner</span>
-                        </div>
-                        <button class="btn btn-lesson" aria-label="Start lesson: AI Makes Art">Start Lesson</button>
-                    </div>
-                </article>
-
-                <article class="lesson-card" role="listitem">
-                    <div class="lesson-icon" aria-hidden="true">🗣️</div>
-                    <div class="lesson-content">
-                        <h3 class="lesson-title">Talking to Computers</h3>
-                        <p class="lesson-desc">Learn how computers understand and talk back to us!</p>
-                        <div class="lesson-meta">
-                            <span class="lesson-duration" aria-label="Duration: 12 minutes">⏱️ 12 min</span>
-                            <span class="lesson-level beginner" aria-label="Level: Beginner">🌱 Beginner</span>
-                        </div>
-                        <button class="btn btn-lesson" aria-label="Start lesson: Talking to Computers">Start Lesson</button>
-                    </div>
-                </article>
-
-                <article class="lesson-card" role="listitem">
-                    <div class="lesson-icon" aria-hidden="true">🎮</div>
-                    <div class="lesson-content">
-                        <h3 class="lesson-title">AI Plays Games</h3>
-                        <p class="lesson-desc">See how AI learns to play games and beat human champions!</p>
-                        <div class="lesson-meta">
-                            <span class="lesson-duration" aria-label="Duration: 15 minutes">⏱️ 15 min</span>
-                            <span class="lesson-level intermediate" aria-label="Level: Intermediate">🌿 Intermediate</span>
-                        </div>
-                        <button class="btn btn-lesson" aria-label="Start lesson: AI Plays Games">Start Lesson</button>
-                    </div>
-                </article>
-
-                <article class="lesson-card" role="listitem">
-                    <div class="lesson-icon" aria-hidden="true">🐱</div>
-                    <div class="lesson-content">
-                        <h3 class="lesson-title">Teaching Computers to See</h3>
-                        <p class="lesson-desc">How does a computer know a cat from a dog? Let's find out!</p>
-                        <div class="lesson-meta">
-                            <span class="lesson-duration" aria-label="Duration: 15 minutes">⏱️ 15 min</span>
-                            <span class="lesson-level intermediate" aria-label="Level: Intermediate">🌿 Intermediate</span>
-                        </div>
-                        <button class="btn btn-lesson" aria-label="Start lesson: Teaching Computers to See">Start Lesson</button>
-                    </div>
-                </article>
-
-                <article class="lesson-card" role="listitem">
-                    <div class="lesson-icon" aria-hidden="true">🤖</div>
-                    <div class="lesson-content">
-                        <h3 class="lesson-title">Build Your Own Robot Friend</h3>
-                        <p class="lesson-desc">Step-by-step guide to making your very own AI assistant!</p>
-                        <div class="lesson-meta">
-                            <span class="lesson-duration" aria-label="Duration: 20 minutes">⏱️ 20 min</span>
-                            <span class="lesson-level advanced" aria-label="Level: Advanced">🌳 Advanced</span>
-                        </div>
-                        <button class="btn btn-lesson" aria-label="Start lesson: Build Your Own Robot Friend">Start Lesson</button>
-                    </div>
-                </article>
-
-                <article class="lesson-card" role="listitem">
-                    <div class="lesson-icon" aria-hidden="true">🌍</div>
-                    <div class="lesson-content">
-                        <h3 class="lesson-title">AI Helps the World</h3>
-                        <p class="lesson-desc">Discover how AI helps doctors, farmers, and saves animals!</p>
-                        <div class="lesson-meta">
-                            <span class="lesson-duration" aria-label="Duration: 12 minutes">⏱️ 12 min</span>
-                            <span class="lesson-level beginner" aria-label="Level: Beginner">🌱 Beginner</span>
-                        </div>
-                        <button class="btn btn-lesson" aria-label="Start lesson: AI Helps the World">Start Lesson</button>
-                    </div>
-                </article>
-            </div>
+        <!-- Difficulty Tabs -->
+        <div class="diff-tabs">
+            <button class="diff-tab active" data-diff="beginner">🌱 Beginner</button>
+            <button class="diff-tab" data-diff="medium">🌿 Medium</button>
+            <button class="diff-tab" data-diff="hard">🌳 Hard</button>
         </div>
-    </section>
 
-    <!-- Games Section -->
-    <section id="games" class="games" aria-labelledby="games-heading">
-        <div class="container">
-            <header class="section-header">
-                <h2 id="games-heading" class="section-title">Play & Learn Games</h2>
-                <p class="section-subtitle">Fun interactive games to practice what you learned!</p>
-            </header>
-            
-            <div class="games-grid" role="list" aria-label="AI Games">
-                <article class="game-card" role="listitem">
-                    <div class="game-preview" aria-hidden="true">
-                        <div class="game-preview-bg">
-                            <span class="game-icon">🎯</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <h3 class="game-title">AI Detective</h3>
-                        <p class="game-desc">Can you spot which picture was made by AI and which by a human?</p>
-                        <div class="game-meta">
-                            <span class="game-difficulty easy" aria-label="Difficulty: Easy">🟢 Easy</span>
-                            <span class="game-time" aria-label="Time: 5 min">⏱️ 5 min</span>
-                        </div>
-                        <button class="btn btn-game" aria-label="Play AI Detective">Play Now</button>
-                    </div>
-                </article>
-
-                <article class="game-card" role="listitem">
-                    <div class="game-preview" aria-hidden="true">
-                        <div class="game-preview-bg">
-                            <span class="game-icon">🎨</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <h3 class="game-title">Draw with AI</h3>
-                        <p class="game-desc">Draw a doodle and watch AI guess what it is!</p>
-                        <div class="game-meta">
-                            <span class="game-difficulty easy" aria-label="Difficulty: Easy">🟢 Easy</span>
-                            <span class="game-time" aria-label="Time: 5 min">⏱️ 5 min</span>
-                        </div>
-                        <button class="btn btn-game" aria-label="Play Draw with AI">Play Now</button>
-                    </div>
-                </article>
-
-                <article class="game-card" role="listitem">
-                    <div class="game-preview" aria-hidden="true">
-                        <div class="game-preview-bg">
-                            <span class="game-icon">🤖</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <h3 class="game-title">Train Your Robot</h3>
-                        <p class="game-desc">Teach a robot to recognize shapes by showing it examples!</p>
-                        <div class="game-meta">
-                            <span class="game-difficulty medium" aria-label="Difficulty: Medium">🟡 Medium</span>
-                            <span class="game-time" aria-label="Time: 10 min">⏱️ 10 min</span>
-                        </div>
-                        <button class="btn btn-game" aria-label="Play Train Your Robot">Play Now</button>
-                    </div>
-                </article>
-
-                <article class="game-card" role="listitem">
-                    <div class="game-preview" aria-hidden="true">
-                        <div class="game-preview-bg">
-                            <span class="game-icon">🎵</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <h3 class="game-title">AI Music Maker</h3>
-                        <p class="game-desc">Create your own song with help from an AI composer!</p>
-                        <div class="game-meta">
-                            <span class="game-difficulty easy" aria-label="Difficulty: Easy">🟢 Easy</span>
-                            <span class="game-time" aria-label="Time: 10 min">⏱️ 10 min</span>
-                        </div>
-                        <button class="btn btn-game" aria-label="Play AI Music Maker">Play Now</button>
-                    </div>
-                </article>
-
-                <article class="game-card" role="listitem">
-                    <div class="game-preview" aria-hidden="true">
-                        <div class="game-preview-bg">
-                            <span class="game-icon">🗣️</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <h3 class="game-title">Chat with Robo</h3>
-                        <p class="game-desc">Have a conversation with our friendly AI robot friend!</p>
-                        <div class="game-meta">
-                            <span class="game-difficulty easy" aria-label="Difficulty: Easy">🟢 Easy</span>
-                            <span class="game-time" aria-label="Time: 5 min">⏱️ 5 min</span>
-                        </div>
-                        <button class="btn btn-game" aria-label="Play Chat with Robo">Play Now</button>
-                    </div>
-                </article>
-
-                <article class="game-card" role="listitem">
-                    <div class="game-preview" aria-hidden="true">
-                        <div class="game-preview-bg">
-                            <span class="game-icon">🧩</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <h3 class="game-title">Pattern Detective</h3>
-                        <p class="game-desc">Help AI find patterns in numbers, shapes, and colors!</p>
-                        <div class="game-meta">
-                            <span class="game-difficulty medium" aria-label="Difficulty: Medium">🟡 Medium</span>
-                            <span class="game-time" aria-label="Time: 10 min">⏱️ 10 min</span>
-                        </div>
-                        <button class="btn btn-game" aria-label="Play Pattern Detective">Play Now</button>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about" aria-labelledby="about-heading">
-        <div class="container">
-            <header class="section-header">
-                <h2 id="about-heading" class="section-title">Why Learn AI?</h2>
-                <p class="section-subtitle">AI is everywhere! Understanding it helps you shape the future.</p>
-            </header>
-            
-            <div class="about-grid">
-                <div class="about-content">
-                    <h3 class="about-title">AI is Everywhere!</h3>
-                    <p class="about-text">From the videos YouTube recommends, to how Netflix knows what you'll like, to self-driving cars - AI is everywhere! Learning about AI helps you understand the world around you.</p>
-                    
-                    <h3 class="about-title">You Can Create with AI!</h3>
-                    <p class="about-text">AI isn't just something scientists use - YOU can use it to make art, write stories, compose music, build games, and solve problems you care about!</p>
-                    
-                    <h3 class="about-title">Future-Ready Skills</h3>
-                    <p class="about-text">By 2030, most jobs will use AI in some way. Starting early gives you a superpower - you'll understand how to work WITH AI, not just use it!</p>
-                </div>
-                
-                <div class="about-illustration" aria-hidden="true">
-                    <div class="about-robot">
-                        <div class="robot-large">
-                            <div class="robot-head-large">
-                                <div class="robot-eye-large left"></div>
-                                <div class="robot-eye-large right"></div>
-                                <div class="robot-antenna-large"></div>
-                            </div>
-                            <div class="robot-body-large">
-                                <div class="robot-heart">❤️</div>
-                            </div>
-                        </div>
-                        <div class="about-float-items" aria-hidden="true">
-                            <span class="float-item">🎨</span>
-                            <span class="float-item">🎮</span>
-                            <span class="float-item">🎵</span>
-                            <span class="float-item">📚</span>
-                            <span class="float-item">🚀</span>
-                            <span class="float-item">🌟</span>
-                        </div>
-                    </div>
+        <!-- Beginner Lessons -->
+        <div class="lessons-grid" id="lessons-beginner">
+            <div class="lesson-card" data-lesson="b1">
+                <div class="lesson-icon">🤖</div>
+                <div class="lesson-content">
+                    <span class="lesson-level beginner">Level 1</span>
+                    <h3>What is AI?</h3>
+                    <p>Meet Robby the Robot and learn what Artificial Intelligence means!</p>
+                    <div class="lesson-meta"><span>⏱️ 5 min</span><span>🌱 Beginner</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('b1')">Start Lesson ▶️</button>
                 </div>
             </div>
-
-            <div class="features" role="list" aria-label="Learning features">
-                <article class="feature" role="listitem">
-                    <div class="feature-icon" aria-hidden="true">🎯</div>
-                    <h3 class="feature-title">Kid-Friendly Lessons</h3>
-                    <p class="feature-desc">Simple explanations with fun examples and colorful illustrations</p>
-                </article>
-                <article class="feature" role="listitem">
-                    <div class="feature-icon" aria-hidden="true">🎮</div>
-                    <h3 class="feature-title">Interactive Games</h3>
-                    <p class="feature-desc">Learn by playing! Games that teach AI concepts through play</p>
-                </article>
-                <article class="feature" role="listitem">
-                    <div class="feature-icon" aria-hidden="true">🏆</div>
-                    <h3 class="feature-title">Earn Badges</h3>
-                    <p class="feature-desc">Collect badges and certificates as you complete lessons</p>
-                </article>
-                <article class="feature" role="listitem">
-                    <div class="feature-icon" aria-hidden="true">👨‍👩‍👧‍👦</div>
-                    <h3 class="feature-title">Parent & Teacher Guides</h3>
-                    <p class="feature-desc">Resources to help adults support kids' AI learning journey</p>
-                </article>
-                <article class="feature" role="listitem">
-                    <div class="feature-icon" aria-hidden="true">🔒</div>
-                    <h3 class="feature-title">Safe & Private</h3>
-                    <p class="feature-desc">No ads, no tracking, no personal data collected - ever!</p>
-                </article>
-                <article class="feature" role="listitem">
-                    <div class="feature-icon" aria-hidden="true">🌍</div>
-                    <h3 class="feature-title">Available in Many Languages</h3>
-                    <p class="feature-desc">Learn in English, Spanish, French, Chinese, and more!</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" aria-labelledby="cta-heading">
-        <div class="container">
-            <div class="cta-content">
-                <h2 id="cta-heading" class="cta-title">Ready to Start Your AI Adventure?</h2>
-                <p class="cta-text">Join thousands of kids learning AI the fun way!</p>
-                <div class="cta-buttons">
-                    <a href="#lessons" class="btn btn-primary btn-large">Start Learning Free! 🚀</a>
-                    <a href="#about" class="btn btn-outline btn-large">For Parents & Teachers 👨‍👩‍👧‍👦</a>
+            <div class="lesson-card" data-lesson="b2">
+                <div class="lesson-icon">🧠</div>
+                <div class="lesson-content">
+                    <span class="lesson-level beginner">Level 2</span>
+                    <h3>How AI Thinks</h3>
+                    <p>Discover how computers learn to make decisions like humans!</p>
+                    <div class="lesson-meta"><span>⏱️ 5 min</span><span>🌱 Beginner</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('b2')">Start Lesson ▶️</button>
                 </div>
-                <p class="cta-note">Completely free • No sign-up needed • Safe for kids</p>
+            </div>
+            <div class="lesson-card" data-lesson="b3">
+                <div class="lesson-icon">👀</div>
+                <div class="lesson-content">
+                    <span class="lesson-level beginner">Level 3</span>
+                    <h3>AI Sees Things</h3>
+                    <p>Learn how computers recognize cats, dogs, and more!</p>
+                    <div class="lesson-meta"><span>⏱️ 5 min</span><span>🌱 Beginner</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('b3')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="b4">
+                <div class="lesson-icon">🗣️</div>
+                <div class="lesson-content">
+                    <span class="lesson-level beginner">Level 4</span>
+                    <h3>AI Listens & Talks</h3>
+                    <p>How does Siri and Alexa understand what you say?</p>
+                    <div class="lesson-meta"><span>⏱️ 5 min</span><span>🌱 Beginner</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('b4')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="b5">
+                <div class="lesson-icon">🎮</div>
+                <div class="lesson-content">
+                    <span class="lesson-level beginner">Level 5</span>
+                    <h3>AI Plays Games</h3>
+                    <p>See how AI learned to beat humans at chess and video games!</p>
+                    <div class="lesson-meta"><span>⏱️ 5 min</span><span>🌱 Beginner</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('b5')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="b6">
+                <div class="lesson-icon">🌍</div>
+                <div class="lesson-content">
+                    <span class="lesson-level beginner">Level 6</span>
+                    <h3>AI Helps the World</h3>
+                    <p>How AI helps doctors, farmers, and protects animals!</p>
+                    <div class="lesson-meta"><span>⏱️ 5 min</span><span>🌱 Beginner</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('b6')">Start Lesson ▶️</button>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#home" class="footer-logo" aria-label="AI for Kids Home">
-                        <span class="logo-icon" aria-hidden="true">🤖</span>
-                        <span class="logo-text">AI for Kids</span>
-                    </a>
-                    <p class="footer-tagline">Making AI fun and accessible for every kid!</p>
-                    <div class="social-links" role="list" aria-label="Social links">
-                        <a href="#" class="social-link" role="listitem" aria-label="Follow us on YouTube" aria-hidden="true">▶️</a>
-                        <a href="#" class="social-link" role="listitem" aria-label="Follow us on Twitter" aria-hidden="true">🐦</a>
-                        <a href="#" class="social-link" role="listitem" aria-label="Follow us on Instagram" aria-hidden="true">📷</a>
-                        <a href="#" class="social-link" role="listitem" aria-label="Email us" aria-hidden="true">📧</a>
+        <!-- Medium Lessons -->
+        <div class="lessons-grid hidden" id="lessons-medium">
+            <div class="lesson-card" data-lesson="m1">
+                <div class="lesson-icon">📊</div>
+                <div class="lesson-content">
+                    <span class="lesson-level medium">Level 1</span>
+                    <h3>Training Data</h3>
+                    <p>Why AI needs lots of examples to learn something new!</p>
+                    <div class="lesson-meta"><span>⏱️ 8 min</span><span>🌿 Medium</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('m1')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="m2">
+                <div class="lesson-icon">🎨</div>
+                <div class="lesson-content">
+                    <span class="lesson-level medium">Level 2</span>
+                    <h3>AI Creates Art</h3>
+                    <p>How computers learn to paint, draw, and make music!</p>
+                    <div class="lesson-meta"><span>⏱️ 8 min</span><span>🌿 Medium</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('m2')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="m3">
+                <div class="lesson-icon">🔍</div>
+                <div class="lesson-content">
+                    <span class="lesson-level medium">Level 3</span>
+                    <h3>Patterns & Rules</h3>
+                    <p>AI finds patterns in data — learn how it makes predictions!</p>
+                    <div class="lesson-meta"><span>⏱️ 8 min</span><span>🌿 Medium</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('m3')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="m4">
+                <div class="lesson-icon">🤖</div>
+                <div class="lesson-content">
+                    <span class="lesson-level medium">Level 4</span>
+                    <h3>Chatbots & Helpers</h3>
+                    <p>How chatbots understand questions and give answers!</p>
+                    <div class="lesson-meta"><span>⏱️ 8 min</span><span>🌿 Medium</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('m4')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="m5">
+                <div class="lesson-icon">🚗</div>
+                <div class="lesson-content">
+                    <span class="lesson-level medium">Level 5</span>
+                    <h3>Self-Driving Cars</h3>
+                    <p>How cars use AI cameras and sensors to drive themselves!</p>
+                    <div class="lesson-meta"><span>⏱️ 8 min</span><span>🌿 Medium</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('m5')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="m6">
+                <div class="lesson-icon">🎬</div>
+                <div class="lesson-content">
+                    <span class="lesson-level medium">Level 6</span>
+                    <h3>AI Recommends</h3>
+                    <p>How YouTube and Netflix know what you'll like!</p>
+                    <div class="lesson-meta"><span>⏱️ 8 min</span><span>🌿 Medium</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('m6')">Start Lesson ▶️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hard Lessons -->
+        <div class="lessons-grid hidden" id="lessons-hard">
+            <div class="lesson-card" data-lesson="h1">
+                <div class="lesson-icon">🏗️</div>
+                <div class="lesson-content">
+                    <span class="lesson-level hard">Level 1</span>
+                    <h3>Neural Networks</h3>
+                    <p>Inside the brain of AI — how layers of "neurons" work together!</p>
+                    <div class="lesson-meta"><span>⏱️ 12 min</span><span>🌳 Hard</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('h1')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="h2">
+                <div class="lesson-icon">🧬</div>
+                <div class="lesson-content">
+                    <span class="lesson-level hard">Level 2</span>
+                    <h3>Deep Learning</h3>
+                    <p>How AI learns complex tasks by building on simple ones!</p>
+                    <div class="lesson-meta"><span>⏱️ 12 min</span><span>🌳 Hard</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('h2')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="h3">
+                <div class="lesson-icon">⚖️</div>
+                <div class="lesson-content">
+                    <span class="lesson-level hard">Level 3</span>
+                    <h3>AI Bias & Fairness</h3>
+                    <p>Why treating all people fairly in AI is super important!</p>
+                    <div class="lesson-meta"><span>⏱️ 12 min</span><span>🌳 Hard</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('h3')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="h4">
+                <div class="lesson-icon">🔒</div>
+                <div class="lesson-content">
+                    <span class="lesson-level hard">Level 4</span>
+                    <h3>AI & Privacy</h3>
+                    <p>Keeping your data safe when using AI tools!</p>
+                    <div class="lesson-meta"><span>⏱️ 12 min</span><span>🌳 Hard</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('h4')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="h5">
+                <div class="lesson-icon">🧪</div>
+                <div class="lesson-content">
+                    <span class="lesson-level hard">Level 5</span>
+                    <h3>AI in Science</h3>
+                    <p>How AI helps discover new medicines and explore space!</p>
+                    <div class="lesson-meta"><span>⏱️ 12 min</span><span>🌳 Hard</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('h5')">Start Lesson ▶️</button>
+                </div>
+            </div>
+            <div class="lesson-card" data-lesson="h6">
+                <div class="lesson-icon">🚀</div>
+                <div class="lesson-content">
+                    <span class="lesson-level hard">Level 6</span>
+                    <h3>The Future of AI</h3>
+                    <p>What will AI look like in 2030 and beyond?</p>
+                    <div class="lesson-meta"><span>⏱️ 12 min</span><span>🌳 Hard</span></div>
+                    <button class="btn btn-lesson" onclick="openLesson('h6')">Start Lesson ▶️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Games Section -->
+<section id="games" class="section games-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>🎮 AI Games</h2>
+            <p>Play and learn! Test your AI knowledge with fun interactive games!</p>
+        </div>
+
+        <!-- Game Difficulty Tabs -->
+        <div class="diff-tabs">
+            <button class="diff-tab active" data-gdiff="easy">🟢 Easy</button>
+            <button class="diff-tab" data-gdiff="medium">🟡 Medium</button>
+            <button class="diff-tab" data-gdiff="hard">🔴 Hard</button>
+        </div>
+
+        <!-- Easy Games -->
+        <div class="games-grid" id="games-easy">
+            <div class="game-card" data-game="e1">
+                <div class="game-preview"><span class="game-big-icon">🎯</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty easy">Easy</span>
+                    <h3>AI or Human?</h3>
+                    <p>Can you spot which picture was made by AI?</p>
+                    <button class="btn btn-game" onclick="openGame('e1')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="e2">
+                <div class="game-preview"><span class="game-big-icon">🐱</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty easy">Easy</span>
+                    <h3>Pet Classifier</h3>
+                    <p>Drag pets to the right category!</p>
+                    <button class="btn btn-game" onclick="openGame('e2')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="e3">
+                <div class="game-preview"><span class="game-big-icon">🔢</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty easy">Easy</span>
+                    <h3>Number Pattern</h3>
+                    <p>Find the pattern and pick the next number!</p>
+                    <button class="btn btn-game" onclick="openGame('e3')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="e4">
+                <div class="game-preview"><span class="game-big-icon">🗣️</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty easy">Easy</span>
+                    <h3>Word Match</h3>
+                    <p>Match words to what they mean!</p>
+                    <button class="btn btn-game" onclick="openGame('e4')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="e5">
+                <div class="game-preview"><span class="game-big-icon">🌈</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty easy">Easy</span>
+                    <h3>Color Sort</h3>
+                    <p>Sort colors the way an AI would learn!</p>
+                    <button class="btn btn-game" onclick="openGame('e5')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="e6">
+                <div class="game-preview"><span class="game-big-icon">🧩</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty easy">Easy</span>
+                    <h3>Shape Match</h3>
+                    <p>Match shapes — just like training an AI!</p>
+                    <button class="btn btn-game" onclick="openGame('e6')">Play Now 🕹️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medium Games -->
+        <div class="games-grid hidden" id="games-medium">
+            <div class="game-card" data-game="me1">
+                <div class="game-preview"><span class="game-big-icon">🤖</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty medium">Medium</span>
+                    <h3>Train the Robot</h3>
+                    <p>Show the robot examples to teach it new tricks!</p>
+                    <button class="btn btn-game" onclick="openGame('me1')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="me2">
+                <div class="game-preview"><span class="game-big-icon">🧩</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty medium">Medium</span>
+                    <h3>Pattern Detective</h3>
+                    <p>Find hidden patterns in numbers and shapes!</p>
+                    <button class="btn btn-game" onclick="openGame('me2')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="me3">
+                <div class="game-preview"><span class="game-big-icon">🎵</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty medium">Medium</span>
+                    <h3>Music Maker</h3>
+                    <p>Create melodies and let AI finish your song!</p>
+                    <button class="btn btn-game" onclick="openGame('me3')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="me4">
+                <div class="game-preview"><span class="game-big-icon">📝</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty medium">Medium</span>
+                    <h3>Story Builder</h3>
+                    <p>Pick words and let AI build a story from them!</p>
+                    <button class="btn btn-game" onclick="openGame('me4')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="me5">
+                <div class="game-preview"><span class="game-big-icon">🗺️</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty medium">Medium</span>
+                    <h3>Map Explorer</h3>
+                    <p>Teach AI the best route through a maze!</p>
+                    <button class="btn btn-game" onclick="openGame('me5')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="me6">
+                <div class="game-preview"><span class="game-big-icon">🖼️</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty medium">Medium</span>
+                    <h3>Image Quiz</h3>
+                    <p>What does the AI see in this picture?</p>
+                    <button class="btn btn-game" onclick="openGame('me6')">Play Now 🕹️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hard Games -->
+        <div class="games-grid hidden" id="games-hard">
+            <div class="game-card" data-game="h1">
+                <div class="game-preview"><span class="game-big-icon">🧠</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty hard">Hard</span>
+                    <h3>Neural Net Builder</h3>
+                    <p>Connect neurons to build a working neural network!</p>
+                    <button class="btn btn-game" onclick="openGame('h1')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="h2">
+                <div class="game-preview"><span class="game-big-icon">🔐</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty hard">Hard</span>
+                    <h3>Code Breaker</h3>
+                    <p>Use AI logic to crack secret codes!</p>
+                    <button class="btn btn-game" onclick="openGame('h2')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="h3">
+                <div class="game-preview"><span class="game-big-icon">🏗️</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty hard">Hard</span>
+                    <h3>AI Architect</h3>
+                    <p>Design an AI system to solve a real-world problem!</p>
+                    <button class="btn btn-game" onclick="openGame('h3')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="h4">
+                <div class="game-preview"><span class="game-big-icon">⚖️</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty hard">Hard</span>
+                    <h3>Bias Busters</h3>
+                    <p>Find and fix unfairness in AI decisions!</p>
+                    <button class="btn btn-game" onclick="openGame('h4')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="h5">
+                <div class="game-preview"><span class="game-big-icon">🎯</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty hard">Hard</span>
+                    <h3>Decision Tree</h3>
+                    <p>Build a decision tree to classify different items!</p>
+                    <button class="btn btn-game" onclick="openGame('h5')">Play Now 🕹️</button>
+                </div>
+            </div>
+            <div class="game-card" data-game="h6">
+                <div class="game-preview"><span class="game-big-icon">🏆</span></div>
+                <div class="game-info">
+                    <span class="game-difficulty hard">Hard</span>
+                    <h3>AI Challenge</h3>
+                    <p>The ultimate test! Solve 10 AI puzzles to win!</p>
+                    <button class="btn btn-game" onclick="openGame('h6')">Play Now 🕹️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final Test Section -->
+<section id="final-test" class="section final-test-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>🏆 Final Test — The Ultimate Challenge!</h2>
+            <p id="finalTestSub">20 VERY hard questions covering everything you've learned. Can you get 80% or more?</p>
+        </div>
+        <div class="final-test-card" id="finalTestCard">
+            <div class="final-test-start" id="finalTestStart">
+                <div class="final-test-trophy">🏆</div>
+                <h3>Ready for the Ultimate Challenge?</h3>
+                <p>This test covers <strong>all lessons</strong> — from beginner to hard. You'll get 20 questions and you need at least <strong>16 correct (80%)</strong> to pass!</p>
+                <div class="final-test-rules">
+                    <div class="rule">⏱️ No time limit — take your time!</div>
+                    <div class="rule">📝 20 questions total</div>
+                    <div class="rule">✅ Need 80% (16/20) to pass</div>
+                    <div class="rule">🎯 Covers ALL difficulty levels</div>
+                </div>
+                <button class="btn btn-warm btn-large" onclick="startFinalTest()">Start Final Test 🚀</button>
+            </div>
+            <div class="final-test-game hidden" id="finalTestGame">
+                <div class="game-score-bar">
+                    <span id="ftScore">Score: 0/20</span>
+                    <span id="ftProgress">Question 1 of 20</span>
+                </div>
+                <div class="ft-progress-bar"><div class="ft-progress-fill" id="ftProgressBar"></div></div>
+                <div class="game-instructions" id="ftQuestion"></div>
+                <div id="ftOptions" style="display:flex;flex-direction:column;gap:8px;margin-top:12px;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Chat Section -->
+<section id="chat-section" class="section chat-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>🤖 Chat with AI Buddy</h2>
+            <p>Ask me anything about using the web! I'll help you learn how to search, stay safe, and use websites like a pro!</p>
+        </div>
+        <div class="chat-container">
+            <div class="chat-window" id="chatWindow">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-msg bot">
+                        <div class="chat-avatar">🤖</div>
+                        <div class="chat-bubble">Hi there! I'm <strong>AI Buddy</strong>! 🌟 I can help you learn how to use the internet safely and smartly. Try asking me something!</div>
                     </div>
                 </div>
-                
-                <nav class="footer-nav" aria-label="Footer navigation">
-                    <div class="footer-nav-col">
-                        <h4 class="footer-nav-title">Learn</h4>
-                        <ul>
-                            <li><a href="#lessons" class="footer-link">All Lessons</a></li>
-                            <li><a href="#games" class="footer-link">All Games</a></li>
-                            <li><a href="#" class="footer-link">Earn Badges</a></li>
-                            <li><a href="#" class="footer-link">Progress Tracker</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-nav-col">
-                        <h4 class="footer-nav-title">Resources</h4>
-                        <ul>
-                            <li><a href="#" class="footer-link">Parent Guide</a></li>
-                            <li><a href="#" class="footer-link">Teacher Resources</a></li>
-                            <li><a href="#" class="footer-link">FAQ</a></li>
-                            <li><a href="#" class="footer-link">Glossary</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-nav-col">
-                        <h4 class="footer-nav-title">About</h4>
-                        <ul>
-                            <li><a href="#about" class="footer-link">Our Mission</a></li>
-                            <li><a href="#" class="footer-link">Team</a></li>
-                            <li><a href="#" class="footer-link">Press</a></li>
-                            <li><a href="#" class="footer-link">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-nav-col">
-                        <h4 class="footer-nav-title">Legal</h4>
-                        <ul>
-                            <li><a href="#" class="footer-link">Privacy Policy</a></li>
-                            <li><a href="#" class="footer-link">Terms of Use</a></li>
-                            <li><a href="#" class="footer-link">COPPA Compliance</a></li>
-                            <li><a href="#" class="footer-link">Accessibility</a></li>
-                        </ul>
-                    </div>
-                </nav>
+                <div class="chat-suggestions" id="chatSuggestions">
+                    <button class="chat-suggest-btn" onclick="sendChat('How do I search on Google?')">🔍 How to search?</button>
+                    <button class="chat-suggest-btn" onclick="sendChat('How do I stay safe online?')">🛡️ Stay safe online</button>
+                    <button class="chat-suggest-btn" onclick="sendChat('What is a browser?')">🌐 What is a browser?</button>
+                    <button class="chat-suggest-btn" onclick="sendChat('How do I use ChatGPT?')">🤖 How to use ChatGPT?</button>
+                    <button class="chat-suggest-btn" onclick="sendChat('How do I make a strong password?')">🔑 Strong passwords</button>
+                    <button class="chat-suggest-btn" onclick="sendChat('How do I not get scammed?')">⚠️ Avoid scams</button>
+                </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p class="copyright">&copy; 2024 AI for Kids. Made with ❤️ for curious minds everywhere.</p>
-                <p class="footer-note">Built with love for the next generation of AI creators! 🚀</p>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" class="chat-input" placeholder="Ask me about using the web..." onkeydown="if(event.key==='Enter')sendChat()">
+                <button class="chat-send-btn" onclick="sendChat()">Send ➤</button>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" aria-label="Back to top" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M18 15l-6-6-6 6"/>
-        </svg>
-    </button>
+<!-- About Section -->
+<section id="about" class="section about-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>💡 Why Learn AI?</h2>
+            <p>AI is everywhere! Understanding it helps you shape the future.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <span class="about-icon">🌍</span>
+                <h3>AI is Everywhere</h3>
+                <p>From YouTube recommendations to self-driving cars — AI is all around you!</p>
+            </div>
+            <div class="about-card">
+                <span class="about-icon">🎨</span>
+                <h3>Create with AI</h3>
+                <p>Make art, write stories, compose music, and build games — all with AI!</p>
+            </div>
+            <div class="about-card">
+                <span class="about-icon">🚀</span>
+                <h3>Future Ready</h3>
+                <p>Understanding AI gives you a superpower for the jobs of tomorrow!</p>
+            </div>
+            <div class="about-card">
+                <span class="about-icon">🧠</span>
+                <h3>No Coding Needed</h3>
+                <p>Learn AI concepts with visual lessons, drag-and-drop games, and fun activities!</p>
+            </div>
+            <div class="about-card">
+                <span class="about-icon">👨‍👩‍👧‍👦</span>
+                <h3>Safe for Kids</h3>
+                <p>No ads, no tracking, no personal data collected — 100% safe!</p>
+            </div>
+            <div class="about-card">
+                <span class="about-icon">🏆</span>
+                <h3>Earn Badges</h3>
+                <p>Complete lessons and games to collect awesome achievement badges!</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-emoji">🤖</span>
+                <span class="logo-text">AI for Kids</span>
+                <p>Making AI fun and accessible for every kid!</p>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#lessons">Lessons</a>
+                <a href="#games">Games</a>
+                <a href="#final-test">Final Test</a>
+                <a href="#chat-section">AI Chat</a>
+                <a href="#about">About</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Made with ❤️ for curious minds everywhere! © 2024 AI for Kids</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<!-- Floating Chat Button -->
+<button class="chat-fab" id="chatFab" onclick="scrollToChat()" aria-label="Chat with AI Buddy">
+    <span class="chat-fab-icon">🤖</span>
+    <span class="chat-fab-pulse"></span>
+</button>
+
+<!-- Lesson Modal -->
+<div class="modal-overlay" id="lessonModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h2 id="lessonTitle">Lesson</h2>
+            <button class="modal-close" onclick="closeModal('lessonModal')">&times;</button>
+        </div>
+        <div class="modal-body" id="lessonBody"></div>
+        <div class="modal-footer">
+            <div class="lesson-nav">
+                <button class="btn btn-warm" id="lessonPrev" onclick="prevLessonPage()">← Back</button>
+                <span class="lesson-page-info" id="lessonPageInfo">Page 1 of 1</span>
+                <button class="btn btn-warm" id="lessonNext" onclick="nextLessonPage()">Next →</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Game Modal -->
+<div class="modal-overlay" id="gameModal">
+    <div class="modal modal-game">
+        <div class="modal-header">
+            <h2 id="gameTitle">Game</h2>
+            <button class="modal-close" onclick="closeModal('gameModal')">&times;</button>
+        </div>
+        <div class="modal-body" id="gameBody"></div>
+        <div class="modal-footer" id="gameFooter"></div>
+    </div>
+</div>
+
+<!-- Score Popup -->
+<div class="score-popup hidden" id="scorePopup">
+    <div class="score-content">
+        <span class="score-emoji" id="scoreEmoji">🎉</span>
+        <h3 id="scoreText">Great Job!</h3>
+        <p id="scoreDetail"></p>
+        <button class="btn btn-warm" onclick="closeScore()">Continue</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
