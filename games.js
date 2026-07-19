@@ -69,7 +69,7 @@ function updateFactsGrid() {
     collectedFacts.forEach(f => {
         const div = document.createElement('div');
         div.className = 'fact-collected';
-        div.innerHTML = '<span class="fact-icon">🧠</span><p>' + f + '</p>';
+        div.innerHTML = '<span class="fact-icon"><span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">psychology</span></span><p>' + f + '</p>';
         grid.appendChild(div);
     });
 }
@@ -88,18 +88,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const saved = localStorage.getItem('theme');
         if (saved === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
-            if (icon) icon.textContent = '☀️';
+            if (icon) icon.innerHTML = '<span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">light_mode</span>';
         }
         themeBtn.addEventListener('click', function () {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             if (isDark) {
                 document.documentElement.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
-                if (icon) icon.textContent = '🌙';
+                if (icon) icon.innerHTML = '<span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">dark_mode</span>';
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
-                if (icon) icon.textContent = '☀️';
+                if (icon) icon.innerHTML = '<span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">light_mode</span>';
             }
         });
     }
@@ -214,7 +214,7 @@ function tttMove(i) {
         tttGameOver = true;
         tttWins++;
         document.getElementById('tttWins').textContent = tttWins;
-        document.getElementById('tttStatus').innerHTML = '🎉 You win!';
+        document.getElementById('tttStatus').innerHTML = '<span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">celebration</span> You win!';
         showFact('tttFact', 'tttFactText');
         return;
     }
@@ -222,7 +222,7 @@ function tttMove(i) {
         tttGameOver = true;
         tttDraws++;
         document.getElementById('tttDraws').textContent = tttDraws;
-        document.getElementById('tttStatus').textContent = '🤝 It\'s a draw!';
+        document.getElementById('tttStatus').textContent = 'Draw!';
         return;
     }
 
@@ -235,7 +235,7 @@ function tttMove(i) {
             tttGameOver = true;
             tttLosses++;
             document.getElementById('tttLosses').textContent = tttLosses;
-            document.getElementById('tttStatus').innerHTML = '😢 AI wins!';
+            document.getElementById('tttStatus').innerHTML = '<span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">sentiment_dissatisfied</span> AI wins!';
             showFact('tttFact', 'tttFactText');
             return;
         }
@@ -243,7 +243,7 @@ function tttMove(i) {
             tttGameOver = true;
             tttDraws++;
             document.getElementById('tttDraws').textContent = tttDraws;
-            document.getElementById('tttStatus').textContent = '🤝 It\'s a draw!';
+            document.getElementById('tttStatus').textContent = 'Draw!';
             return;
         }
         document.getElementById('tttStatus').innerHTML = 'Your turn! You are <span class="x-color">X</span>';
@@ -431,7 +431,7 @@ function snakeTick() {
         clearInterval(snakeInterval);
         snakeRunning = false;
         if (snakeScore > snakeBest) { snakeBest = snakeScore; document.getElementById('snakeBest').textContent = snakeBest; }
-        document.getElementById('snakeStatus').textContent = '💀 Game Over! Score: ' + snakeScore;
+        document.getElementById('snakeStatus').textContent = 'Game Over! Score: ' + snakeScore;
         showFact('snakeFact', 'snakeFactText');
         return;
     }
@@ -488,7 +488,7 @@ var memLevel = 'easy';
 var memTimer = null, memSeconds = 0;
 var memLocked = false;
 
-var MEM_EMOJIS = ['🤖','🧠','💡','🚀','🎮','⚡','🔮','🎨','🌟','🎯','🧩','🎪','🌈','🍕','🐱','🦊','🐶','🐸','🦁','🐼'];
+var MEM_EMOJIS = ['smart_toy','psychology','lightbulb','rocket_launch','sports_esports','bolt','auto_awesome','palette','star','gps_fixed','extension','celebration','palette','restaurant','pets','pets','pets','pets','pets','pets'];
 
 function setMemoryLevel(level) {
     memLevel = level;
@@ -535,7 +535,7 @@ function initMemory() {
         card.className = 'mem-card';
         card.dataset.index = i;
         card.dataset.emoji = emoji;
-        card.textContent = '❓';
+        card.textContent = '?';
         card.addEventListener('click', function () { memFlip(card); });
         grid.appendChild(card);
     });
