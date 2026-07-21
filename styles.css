@@ -30,6 +30,10 @@
     --transition: 0.3s ease;
 }
 
+a, button, .lesson-card, .game-card, .diff-tab, .nav-link, .chat-suggest-btn, input[type="submit"] {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpolygon points='14,1 17.5,10 27,10 19.5,16 22,26 14,20 6,26 8.5,16 1,10 10.5,10' fill='%23FFB627' stroke='%23E55A25' stroke-width='1' stroke-linejoin='round'/%3E%3C/svg%3E") 14 14, pointer;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
@@ -40,6 +44,7 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpolygon points='14,1 17.5,10 27,10 19.5,16 22,26 14,20 6,26 8.5,16 1,10 10.5,10' fill='%23FFB627' stroke='%23E55A25' stroke-width='1' stroke-linejoin='round'/%3E%3C/svg%3E") 14 14, auto;
 }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -1479,13 +1484,124 @@ body {
     background: linear-gradient(135deg, #1a0f0a, #2a1510);
 }
 
+/* Ocean theme dark overrides */
+[data-theme="dark"][style*="--orange:#0077B6"] .navbar,
+[data-theme="dark"] .navbar[data-theme="ocean"] {
+    background: linear-gradient(135deg, #0d1b2a, #1b3a4b);
+}
+
+/* Forest theme dark overrides */
+[data-theme="dark"][style*="--orange:#2D6A4F"] .navbar,
+[data-theme="dark"] .navbar[data-theme="forest"] {
+    background: linear-gradient(135deg, #0b1f14, #1b4332);
+}
+
 /* ============================================================
-   THEME TOGGLE BUTTON
+   NAV RIGHT CONTAINER
    ============================================================ */
 .nav-right {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+/* ============================================================
+   HIDDEN UTILITY
+   ============================================================ */
+.hidden { display: none !important; }
+
+/* ============================================================
+   TEXT-TO-SPEECH BUTTONS
+   ============================================================ */
+.lesson-title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tts-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--orange);
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.tts-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.4);
+}
+
+.tts-btn:active { transform: scale(0.95); }
+
+.tts-btn.tts-active {
+    background: linear-gradient(135deg, var(--warm-pink), var(--red));
+    border-color: var(--warm-pink);
+    animation: ttsPulse 1.5s ease-in-out infinite;
+}
+
+.tts-btn-stop {
+    background: linear-gradient(135deg, #888, #666);
+    border-color: #888;
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+}
+
+.tts-btn-stop:hover {
+    background: linear-gradient(135deg, var(--red), var(--red-light));
+    border-color: var(--red);
+    box-shadow: 0 4px 16px rgba(255, 68, 68, 0.4);
+}
+
+@keyframes ttsPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 157, 0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(255, 107, 157, 0); }
+}
+
+[data-theme="dark"] .tts-btn { border-color: var(--orange-light); }
+[data-theme="dark"] .tts-btn-stop { background: linear-gradient(135deg, #555, #444); border-color: #555; }
+
+/* ============================================================
+   BUTTON LARGE (Name Modal)
+   ============================================================ */
+.btn-large {
+    padding: 16px 40px;
+    font-size: 20px;
+    font-weight: 800;
+    border-radius: 40px;
+    border: none;
+    background: linear-gradient(135deg, var(--orange), var(--warm-pink));
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 24px rgba(255, 107, 53, 0.4);
+    font-family: 'Fredoka', sans-serif;
+}
+
+.btn-large:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 32px rgba(255, 107, 53, 0.5);
+}
+
+.btn-large:active { transform: translateY(0) scale(0.98); }
+
+/* ============================================================
+   THEME PICKER
+   ============================================================ */
+.theme-picker-wrapper {
+    position: relative;
 }
 
 .theme-toggle {
@@ -1496,7 +1612,7 @@ body {
     background: rgba(255,255,255,0.1);
     color: white;
     font-size: 18px;
-    cursor: pointer;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpolygon points='14,1 17.5,10 27,10 19.5,16 22,26 14,20 6,26 8.5,16 1,10 10.5,10' fill='%23FFB627' stroke='%23E55A25' stroke-width='1' stroke-linejoin='round'/%3E%3C/svg%3E") 14 14, pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1518,6 +1634,127 @@ body {
     background: rgba(255,182,39,0.2);
     border-color: var(--yellow);
 }
+
+.theme-picker {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    border: 2px solid #FFE0CC;
+    padding: 8px;
+    min-width: 200px;
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.95);
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+}
+
+.theme-picker.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.theme-picker-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    padding: 6px 12px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.theme-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+    transition: background 0.2s ease;
+    text-align: left;
+}
+
+.theme-option:hover { background: var(--warm-bg); }
+
+.theme-option.active { background: var(--warm-bg2); }
+
+.theme-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid rgba(0,0,0,0.1);
+}
+
+.theme-check {
+    margin-left: auto;
+    font-size: 18px;
+    color: var(--orange);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.theme-option.active .theme-check { opacity: 1; }
+
+.theme-picker-divider {
+    height: 1px;
+    background: #FFE0CC;
+    margin: 6px 12px;
+}
+
+.theme-dark-btn {
+    color: var(--text-med);
+}
+
+.theme-toggle-track {
+    margin-left: auto;
+    width: 36px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+.theme-toggle-track.on { background: var(--orange); }
+
+.theme-toggle-thumb {
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.theme-toggle-track.on .theme-toggle-thumb { transform: translateX(16px); }
+
+[data-theme="dark"] .theme-picker {
+    background: #2a1f18;
+    border-color: #3D2B1F;
+}
+
+[data-theme="dark"] .theme-option:hover { background: #3D2B1F; }
+[data-theme="dark"] .theme-option.active { background: #4a3828; }
+[data-theme="dark"] .theme-picker-divider { background: #3D2B1F; }
+[data-theme="dark"] .theme-picker-title { color: var(--text-light); }
 
 /* ============================================================
    USER BADGE
@@ -2234,4 +2471,8 @@ body {
     .theme-grid { grid-template-columns: repeat(3, 1fr); }
     .profile-name { font-size: 26px; }
     .profile-points-num { font-size: 32px; }
+    .theme-picker { right: -10px; min-width: 180px; }
+    .lesson-title-group { gap: 6px; }
+    .tts-btn { width: 32px; height: 32px; font-size: 16px; }
+    .tts-btn-stop { width: 28px; height: 28px; font-size: 14px; }
 }

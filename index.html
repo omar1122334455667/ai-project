@@ -40,9 +40,35 @@
             <div class="auth-buttons logged-in" id="logoutArea" style="display:none;">
                 <button class="btn btn-nav-logout" onclick="handleLogout()">Logout</button>
             </div>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <span class="theme-icon" id="themeIcon"><span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">dark_mode</span></span>
-            </button>
+            <div class="theme-picker-wrapper">
+                <button class="theme-toggle" id="themeToggle" aria-label="Change theme" title="Change Theme">
+                    <span class="theme-icon" id="themeIcon"><span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">palette</span></span>
+                </button>
+                <div class="theme-picker" id="themePicker">
+                    <div class="theme-picker-title">Choose a Theme</div>
+                    <button class="theme-option" onclick="setTheme(0)" data-theme-id="sunset">
+                        <span class="theme-swatch" style="background:linear-gradient(135deg,#FF6B35,#FFB627)"></span>
+                        <span>Sunset</span>
+                        <span class="material-symbols-outlined theme-check">check</span>
+                    </button>
+                    <button class="theme-option" onclick="setTheme(1)" data-theme-id="ocean">
+                        <span class="theme-swatch" style="background:linear-gradient(135deg,#0077B6,#00B4D8)"></span>
+                        <span>Ocean</span>
+                        <span class="material-symbols-outlined theme-check">check</span>
+                    </button>
+                    <button class="theme-option" onclick="setTheme(2)" data-theme-id="forest">
+                        <span class="theme-swatch" style="background:linear-gradient(135deg,#2D6A4F,#52B788)"></span>
+                        <span>Forest</span>
+                        <span class="material-symbols-outlined theme-check">check</span>
+                    </button>
+                    <div class="theme-picker-divider"></div>
+                    <button class="theme-option theme-dark-btn" id="darkModeBtn">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                        <span>Dark Mode</span>
+                        <span class="theme-toggle-track" id="darkToggleTrack"><span class="theme-toggle-thumb" id="darkToggleThumb"></span></span>
+                    </button>
+                </div>
+            </div>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
             </button>
@@ -58,18 +84,6 @@
         </ul>
     </div>
 </nav>
-
-<!-- Name Entry Modal -->
-<div class="name-modal-overlay" id="nameModal">
-    <div class="name-modal">
-        <div class="name-modal-robot"><span class="material-symbols-outlined">smart_toy</span></div>
-        <h2>Welcome to AI for Kids!</h2>
-        <p>What's your name, young explorer?</p>
-        <input type="text" id="nameInput" class="name-input" placeholder="Type your name here..." maxlength="20" onkeydown="if(event.key==='Enter')saveName()">
-        <button class="btn btn-warm btn-large" onclick="saveName()">Let's Go! <span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">rocket_launch</span></button>
-        <p class="name-hint">Examples: Jake, Omar, Ali, Sara, Mia</p>
-    </div>
-</div>
 
 <!-- Hero Section -->
 <header id="home" class="hero">
@@ -666,7 +680,15 @@
 <div class="modal-overlay" id="lessonModal">
     <div class="modal">
         <div class="modal-header">
-            <h2 id="lessonTitle">Lesson</h2>
+            <div class="lesson-title-group">
+                <h2 id="lessonTitle">Lesson</h2>
+                <button class="tts-btn" id="ttsPlayBtn" onclick="toggleTTS()" title="Listen to this lesson" aria-label="Listen to lesson">
+                    <span class="material-symbols-outlined" id="ttsPlayIcon">play_arrow</span>
+                </button>
+                <button class="tts-btn tts-btn-stop hidden" id="ttsStopBtn" onclick="stopTTS()" title="Stop listening" aria-label="Stop listening">
+                    <span class="material-symbols-outlined">stop</span>
+                </button>
+            </div>
             <button class="modal-close" onclick="closeModal('lessonModal')">&times;</button>
         </div>
         <div class="modal-body" id="lessonBody"></div>

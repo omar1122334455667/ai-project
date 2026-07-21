@@ -1500,6 +1500,7 @@ function openLesson(id) {
 }
 
 function renderLessonPage() {
+    stopTTS();
     const lesson = lessons[currentLessonId];
     const page = lesson.pages[currentLessonPage];
     document.getElementById('lessonTitle').innerHTML = lesson.title;
@@ -1542,8 +1543,115 @@ function openGame(id) {
 }
 
 function closeModal(id) {
+    if (id === 'lessonModal') stopTTS();
     document.getElementById(id).classList.remove('open');
     document.body.style.overflow = '';
+}
+
+// ============================================================
+// TEXT-TO-SPEECH (Web Speech API)
+// ============================================================
+let currentUtterance = null;
+let isTTSSpeaking = false;
+
+function toggleTTS() {
+    if (isTTSSpeaking) {
+        pauseTTS();
+    } else if (window.speechSynthesis && window.speechSynthesis.paused) {
+        resumeTTS();
+    } else {
+        speakLessonPage();
+    }
+}
+
+function speakLessonPage() {
+    if (!('speechSynthesis' in window)) {
+        alert('Sorry, your browser does not support text-to-speech.');
+        return;
+    }
+    window.speechSynthesis.cancel();
+
+    const lesson = lessons[currentLessonId];
+    const page = lesson.pages[currentLessonPage];
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = page.content;
+    const text = tempDiv.textContent;
+
+    currentUtterance = new SpeechSynthesisUtterance(text);
+    currentUtterance.rate = 0.85;
+    currentUtterance.pitch = 1.1;
+    currentUtterance.volume = 1;
+
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.lang.startsWith('en') && v.name.includes('Google'))
+        || voices.find(v => v.lang.startsWith('en'))
+        || voices[0];
+    if (preferred) currentUtterance.voice = preferred;
+
+    currentUtterance.onend = function () {
+        isTTSSpeaking = false;
+        currentUtterance = null;
+        updateTTSUI();
+    };
+    currentUtterance.onerror = function () {
+        isTTSSpeaking = false;
+        currentUtterance = null;
+        updateTTSUI();
+    };
+
+    window.speechSynthesis.speak(currentUtterance);
+    isTTSSpeaking = true;
+    updateTTSUI();
+}
+
+function pauseTTS() {
+    if (window.speechSynthesis && window.speechSynthesis.speaking) {
+        window.speechSynthesis.pause();
+        isTTSSpeaking = false;
+        updateTTSUI();
+    }
+}
+
+function resumeTTS() {
+    if (window.speechSynthesis && window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+        isTTSSpeaking = true;
+        updateTTSUI();
+    }
+}
+
+function stopTTS() {
+    if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+    }
+    isTTSSpeaking = false;
+    currentUtterance = null;
+    updateTTSUI();
+}
+
+function updateTTSUI() {
+    const playIcon = document.getElementById('ttsPlayIcon');
+    const stopBtn = document.getElementById('ttsStopBtn');
+    const playBtn = document.getElementById('ttsPlayBtn');
+    if (!playIcon || !stopBtn) return;
+
+    if (isTTSSpeaking) {
+        playIcon.textContent = 'pause';
+        playBtn.classList.add('tts-active');
+        stopBtn.classList.remove('hidden');
+    } else if (window.speechSynthesis && window.speechSynthesis.paused) {
+        playIcon.textContent = 'play_arrow';
+        playBtn.classList.remove('tts-active');
+        stopBtn.classList.remove('hidden');
+    } else {
+        playIcon.textContent = 'volume_up';
+        playBtn.classList.remove('tts-active');
+        stopBtn.classList.add('hidden');
+    }
+}
+
+if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = function () {};
 }
 
 function showScorePopup(emoji, text, detail) {
@@ -1916,20 +2024,22 @@ let userName = localStorage.getItem('aiKidsName') || '';
 
 function saveName() {
     const input = document.getElementById('nameInput');
+    if (!input) return;
     const name = input.value.trim();
-    if (!name) { input.style.borderColor = '#FF4444'; return; }
+    if (!name) { input.style.borderColor = '#FF4444'; input.focus(); return; }
+    input.style.borderColor = '';
     userName = name;
     localStorage.setItem('aiKidsName', name);
-    document.getElementById('nameModal').classList.add('hidden');
+    const modal = document.getElementById('nameModal');
+    if (modal) modal.classList.add('hidden');
     applyUserName();
 }
 
 function applyUserName() {
-    if (!userName) {
-        document.getElementById('nameModal').classList.remove('hidden');
-        return;
-    }
-    document.getElementById('nameModal').classList.add('hidden');
+    const modal = document.getElementById('nameModal');
+    if (modal) modal.classList.add('hidden');
+
+    if (!userName) return;
 
     // Nav badge
     const badge = document.getElementById('userBadge');
@@ -1972,28 +2082,97 @@ function changeName() {
 }
 
 // ============================================================
-// DARK MODE / LIGHT MODE
+// 3-THEME PICKER
 // ============================================================
+const COLOR_THEMES = [
+    { id: 'sunset', name: 'Sunset', icon: 'wb_sunny', primary: '#FF6B35', primaryDark: '#E55A25', secondary: '#FFB627', bg: '#FFF5EB', text: '#3D2B1F', darkBg: '#1a1210', darkCard: '#2a1f18', darkBorder: '#3D2B1F', darkText: '#F5E6D8', darkMed: '#C4A88E' },
+    { id: 'ocean', name: 'Ocean', icon: 'water', primary: '#0077B6', primaryDark: '#005f8a', secondary: '#00B4D8', bg: '#E8F4FD', text: '#1B263B', darkBg: '#0d1b2a', darkCard: '#1b2838', darkBorder: '#1b3a4b', darkText: '#E0FBFC', darkMed: '#A8DADC' },
+    { id: 'forest', name: 'Forest', icon: 'forest', primary: '#2D6A4F', primaryDark: '#1B4332', secondary: '#52B788', bg: '#E8F5E9', text: '#1B4332', darkBg: '#0b1f14', darkCard: '#162d1f', darkBorder: '#1b4332', darkText: '#D8F3DC', darkMed: '#95D5B2' }
+];
+
+let currentThemeIndex = 0;
+
 function initTheme() {
-    const saved = localStorage.getItem('aiKidsTheme');
-    if (saved === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        document.getElementById('themeIcon').textContent = '<span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">wb_sunny</span>';
+    const saved = localStorage.getItem('aiKidsColorTheme');
+    if (saved) {
+        const idx = COLOR_THEMES.findIndex(t => t.id === saved);
+        if (idx >= 0) currentThemeIndex = idx;
     }
+    applyColorTheme(COLOR_THEMES[currentThemeIndex]);
+    const isDark = localStorage.getItem('aiKidsTheme') === 'dark';
+    if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+    updateThemeIcon();
+}
+
+function applyColorTheme(theme) {
+    const root = document.documentElement;
+    root.style.setProperty('--orange', theme.primary);
+    root.style.setProperty('--orange-dark', theme.primaryDark);
+    root.style.setProperty('--orange-light', theme.secondary);
+    root.style.setProperty('--warm-bg', theme.bg);
+    root.style.setProperty('--text-dark', theme.text);
+    localStorage.setItem('aiKidsColorTheme', theme.id);
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        root.style.setProperty('--warm-bg', theme.darkBg);
+        root.style.setProperty('--text-dark', theme.darkText);
+        root.style.setProperty('--text-med', theme.darkMed);
+    } else {
+        root.style.setProperty('--text-med', '');
+    }
+    updateThemePickerActive();
 }
 
 function toggleTheme() {
+    const picker = document.getElementById('themePicker');
+    picker.classList.toggle('open');
+}
+
+function setTheme(index) {
+    currentThemeIndex = index;
+    applyColorTheme(COLOR_THEMES[index]);
+    document.getElementById('themePicker').classList.remove('open');
+    updateThemeIcon();
+}
+
+function toggleDarkMode() {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     if (isDark) {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('aiKidsTheme', 'light');
-        document.getElementById('themeIcon').textContent = '<span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">dark_mode</span>';
     } else {
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('aiKidsTheme', 'dark');
-        document.getElementById('themeIcon').textContent = '<span class="material-symbols-outlined" style="font-size:inherit;vertical-align:middle">wb_sunny</span>';
+    }
+    applyColorTheme(COLOR_THEMES[currentThemeIndex]);
+    updateThemeIcon();
+}
+
+function updateThemeIcon() {
+    const btn = document.getElementById('themeToggle');
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    btn.title = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    updateThemePickerActive();
+    const thumb = document.getElementById('darkToggleThumb');
+    const track = document.getElementById('darkToggleTrack');
+    if (thumb && track) {
+        if (isDark) { track.classList.add('on'); } else { track.classList.remove('on'); }
     }
 }
+
+function updateThemePickerActive() {
+    const theme = COLOR_THEMES[currentThemeIndex];
+    document.querySelectorAll('.theme-option[data-theme-id]').forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.themeId === theme.id);
+    });
+}
+
+document.addEventListener('click', function (e) {
+    const picker = document.getElementById('themePicker');
+    const toggle = document.getElementById('themeToggle');
+    if (picker && !picker.contains(e.target) && !toggle.contains(e.target)) {
+        picker.classList.remove('open');
+    }
+});
 
 // ============================================================
 // FINAL TEST - 20 VERY HARD QUESTIONS
@@ -2112,8 +2291,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSmoothScroll();
     setupModalClose();
 
-    // Theme toggle
+    // Theme toggle opens picker
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+    // Dark mode toggle
+    document.getElementById('darkModeBtn').addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleDarkMode();
+    });
 
     // User badge click to change name
     document.getElementById('userBadge').addEventListener('click', changeName);
@@ -2125,8 +2310,12 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuthState();
 
     // Gamification
-    applyTheme(getCurrentTheme().id);
     updatePointsDisplay();
+
+    // Load TTS voices
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+    }
 });
 
 // ============================================================
